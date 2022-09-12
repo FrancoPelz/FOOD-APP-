@@ -1,0 +1,25 @@
+A-Back
+
+1.ver API
+2.Estructurar los modelos
+3.Setear las relaciones
+4.defino mis order y filters (si esta en el back no en el front y viceversa)
+5.Rutas
+
+
+B-Front
+
+1.configuracion de las rutas
+
+home
+main
+detalle
+formularios
+
+
+C-Estilos
+
+D-Tests/Deploy
+
+
+
