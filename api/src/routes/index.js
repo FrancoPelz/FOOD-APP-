@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const recipesRoute = require('./Middlewares/recipes')
-const dietsRoute = require('./Middlewares/diets')
+const recipesRoute = require('./recipes')
+const dietsRoute = require('./diets')
 
 
 const router = Router();
