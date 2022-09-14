@@ -1,21 +1,19 @@
 const { Router } = require('express');
+const {Diet} = require('../db');
+const {addDietsToDb} = require('./utils')
 const router = Router();
 
-router.get("/", (req,res, next) => {
-    res.send('soy get /diets')
+router.get("/", async (req,res, next) => {
+    try {
+        await addDietsToDb();                 
+        const allDiets = await Diet.findAll()
+        res.send(allDiets)
+
+    } catch (error) {
+        next(error)
+    }
 });
 
-router.post("/", (req,res, next) => {
-    res.send('soy post /diets')
-});
-
-router.put("/", (req,res, next) => {
-    res.send('soy put /diets')
-});
-
-router.delete("/", (req,res, next) => {
-    res.send('soy delete /diets')
-});
 
 
 

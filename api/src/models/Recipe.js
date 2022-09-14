@@ -9,10 +9,12 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
+      unique: true
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
     summary: {
       type: DataTypes.TEXT,
@@ -24,13 +26,15 @@ module.exports = (sequelize) => {
     img: {
       type: DataTypes.STRING
     },
-    instructions: {
+    steps: {
       type: DataTypes.TEXT
     },
-    createdinDb: {
+    /* createdinDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true,
-    }
+    } */
+  },{
+    timestamps : false
   });
 };

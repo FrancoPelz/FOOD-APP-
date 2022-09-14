@@ -2,6 +2,7 @@ const axios = require('axios');
 const {Recipe, Diet} = require('../db')
 //const {apiKey} = process.env;
 const {data} = require('../ApiExt.json');
+const {data1} = require('../recipe200Info.json')
 
 
 const getApiRecipes = async () => {
@@ -14,7 +15,7 @@ const getApiRecipes = async () => {
             img : r.image
         }
     })
-    return apiRecipes;
+    return apiRecipes; 
 };
 
 const getDbRecipes = async () => {
@@ -37,13 +38,27 @@ const getAllRecipes = async () => {
     return allInfo;
 }
 
-const getApiRecipeInf = async () => {};
+const getApiRecipeInf = async () => {
+    //const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`)
+    const apiUrl = await data1
+    //(id, {include: diet})
+    const apiInfo = await apiUrl
+    return apiInfo;
+
+};
+
+
+
 
 const getDbRecipeInf = async () => {};
 
-const getAllRecipeInf = async () => {};
 
-
+const addDietsToDb = async () => {
+    const diets = ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian","Ovo-Vegetarian", "Vegan", "Pescetarian", "Paleo", "Primal", "Low FODMAP", "Whole30"]
+    const promises = diets.map(d => Diet.findOrCreate({
+    where: {name : d}}))
+    await Promise.all(promises)
+};
 
 
 
@@ -51,7 +66,8 @@ const getAllRecipeInf = async () => {};
 
 
 module.exports = {
-    getApiRecipes,
-    getDbRecipes,
-    getAllRecipes
+      getAllRecipes,
+      getApiRecipeInf,
+      getDbRecipeInf,
+      addDietsToDb
 }
