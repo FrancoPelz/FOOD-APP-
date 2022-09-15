@@ -14,26 +14,32 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
+      set(input){
+        this.setDataValue('name', input.toLowerCase());
+      },
+      get(){
+        let input = this.getDataValue('name');
+        let output = input[0].toUpperCase()+input.slice(1);
+        return output;
+      }
     },
     summary: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
     healthScore: {
-      type: DataTypes.INTEGER
+      type: DataTypes.DECIMAL,
+      defaultValue: null
     },
     img: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: "https://previews.123rf.com/images/vextok/vextok1608/vextok160800134/61570324-men%C3%BA-de-comida-r%C3%A1pida-conjunto-de-vectores-de-fondo-de-dibujos-animados-patatas-fritas-hamburguesas-.jpg"
     },
     steps: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      defaultValue: null
     },
-    /* createdinDb: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
-    } */
   },{
     timestamps : false
   });

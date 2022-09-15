@@ -1,4 +1,4 @@
-{ "data1":{
+{ "data1" :{
     "vegetarian": false,
     "vegan": false,
     "glutenFree": false,
@@ -30,7 +30,7 @@
     "American"
     ],
     "dishTypes": [
-    "salad"
+    "salad", "pedo"
     ],
     "diets": [],
     "occasions": [],

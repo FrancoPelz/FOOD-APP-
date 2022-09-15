@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const {Recipe} = require('../db');
-const { getAllRecipes, getApiRecipeInf,addDietsToDb } = require('./utils');
+const {Diet} = require('../db');
+const { getAllRecipes, getApiRecipeInf,addDietsToDb, getDbRecipeInf } = require('./utils');
 const router = Router();
 
 router.get("/", async (req, res, next) => {
@@ -9,8 +10,8 @@ router.get("/", async (req, res, next) => {
     try {
         let totalRecipes = await getAllRecipes();
         if(name){
-            let recipes = await totalRecipes.filter(r => r.name.toLowerCase().includes(name.toLowerCase()));
-            if (recipes.length) return res.send(recipes); 
+            let recipesList = await totalRecipes.filter(r => r.name.toLowerCase().includes(name.toLowerCase()));
+            if (recipesList.length) return res.send(recipesList); 
             else return res.status(404).send(`There is no recipes with ${name}`);
         } 
         res.json(totalRecipes);  
@@ -23,22 +24,17 @@ router.get("/:id", async (req, res, next) => {
     const {id} = req.params;
     await addDietsToDb();
 
-    const ValidateId = (id) => {
-        for (let i =0;i < id.length ; i++){
-            if (isNaN(id[i]))
-            return true;
-        }
-    } 
-
     try {
-        if(ValidateId(id)){
-            return res.status(404).send("errorr")
+        if(id.length>12){
+            console.log(id)
+            const infoDb = await getDbRecipeInf(id)
+            if(!infoDb) return res.status(404).send("Recipe doesn`t exist")
+            return res.send(infoDb)
         }
-        const infoApi = await getApiRecipeInf()
-        return res.send(infoApi)
-        
-        //const infoDb = asd;
-        //return res.send()
+       
+        const apiUrl = await getApiRecipeInf(id)
+        if(!apiUrl) return res.status(404).send("Recipe doesn`t exist")
+        return res.send(apiUrl)
 
     } catch (error) {
         next(error);
@@ -46,24 +42,34 @@ router.get("/:id", async (req, res, next) => {
 })
 
 
-/* const {code} = req.params;
-const character = await Character.findByPk(code, {
-    include: Role
-}) */
-
-
-//ver que onda con agregar 2 comidas iguales
 router.post("/", async (req, res, next) => {
-    const {name, summary} = req.body;
+    const {name, summary,healthScore, img, steps, diets} = req.body;
+    await addDietsToDb();
     try {
-        if(!name || !summary)
-           return res.status(404).send("data is missing");
+        if(!name)
+           return res.status(404).send("You must put a Name");
+        if(!summary)
+           return res.status(404).send("You must put a Summary");
 
-        const newRecipe = await Recipe.create(req.body);
-        res.status(201).json(newRecipe);
+
+        let newRecipe = await Recipe.create({
+            name, summary, healthScore, img, steps, diets
+        });
+
+        if(diets){
+          const dietDb = await Diet.findAll({
+              where : {name: diets}
+          })
+          await newRecipe.addDiet(dietDb)
+        }
+
+        res.status(201).send("Succes")
+        
+          
+
 
     } catch (error) {
-            next(error);   
+           res.status(400).send("This recipe already exists")
     }
 });
 

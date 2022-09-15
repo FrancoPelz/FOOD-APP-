@@ -7,19 +7,23 @@ const {data1} = require('../recipe200Info.json')
 
 const getApiRecipes = async () => {
     //const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&number=100`)
-    const apiUrl = await data
-    const apiRecipes = await apiUrl.results.map(r => {   //AGREGAR DATA.RESULTS CON AXIOS
+    const apiUrl = await axios.get('https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5')
+    //const apiRecipes = await apiUrl.data.results.map(r => { 
+    const apiRecipes = await apiUrl.data.results.map(r => {   
         return {
-            id: r.id,
             name: r.title,
-            img : r.image
+            img : r.image,
+            diets : r.diets.map (el => el), 
+            healthScore: r.healthScore  
         }
+    
+
     })
     return apiRecipes; 
 };
 
-const getDbRecipes = async () => {
-    return await Recipe.findAll({
+const getDbRecipes = async () => { 
+    const recipes =  await Recipe.findAll({
         include:{
             model: Diet,
             attributes:['name'],
@@ -28,6 +32,18 @@ const getDbRecipes = async () => {
             },
         }
     });
+
+    const dbRecipes = await recipes.map(r => {   
+        return {
+            name: r.name,
+            img : r.img,
+            diets : r.diets.map (el => el.name), 
+            healthScore: r.healthScore  
+        }
+
+    });
+
+    return dbRecipes
 };
 
 const getAllRecipes = async () => {
@@ -38,23 +54,40 @@ const getAllRecipes = async () => {
     return allInfo;
 }
 
-const getApiRecipeInf = async () => {
+const getApiRecipeInf = async (/* id */) => {
     //const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`)
-    const apiUrl = await data1
-    //(id, {include: diet})
-    const apiInfo = await apiUrl
-    return apiInfo;
+    //const apiInf = apiUrl.data
+    const apiInf = await data1
+      const infoRecipeDb = {
+        id : apiInf.id,
+        name: apiInf.title,
+        summary: apiInf.summary ,
+        healthScore: apiInf.healthScore,
+        img: apiInf.image ,
+        steps: apiInf.instructions,
+        diets: apiInf.diets.map(el => el), 
+        types: apiInf.dishTypes?.map(el => el)
+        } 
+
+    return infoRecipeDb;
 
 };
 
-
-
-
-const getDbRecipeInf = async () => {};
-
+const getDbRecipeInf = async (id) => {
+    const recipeDbInfo = await Recipe.findByPk(id,{
+        include: {
+        model: Diet,
+        atributes: ["name"],
+        through: {
+            attributes: [],
+            },
+        },
+    });
+    return recipeDbInfo;
+};
 
 const addDietsToDb = async () => {
-    const diets = ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian","Ovo-Vegetarian", "Vegan", "Pescetarian", "Paleo", "Primal", "Low FODMAP", "Whole30"]
+    const diets = ["gluten free", "ketogenic", "vegetarian", "lacto-vegetarian","ovo-vegetarian", "vegan", "pescetarian", "paleo", "primal", "low fodmap", "whole30"]
     const promises = diets.map(d => Diet.findOrCreate({
     where: {name : d}}))
     await Promise.all(promises)
@@ -69,5 +102,5 @@ module.exports = {
       getAllRecipes,
       getApiRecipeInf,
       getDbRecipeInf,
-      addDietsToDb
+      addDietsToDb,
 }

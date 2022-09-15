@@ -5,7 +5,11 @@ module.exports = (sequelize) => {
   sequelize.define('diet', {
       name: {
       type: DataTypes.STRING,
-      unique: true
+      unique: true,
+      allowNull : false,
+      set(input){
+        this.setDataValue('name', input.toLowerCase());
+      },
     },
   },{
     timestamps : false
