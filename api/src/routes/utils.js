@@ -1,5 +1,5 @@
 const axios = require('axios');
-const {Recipe, Diet} = require('../db')
+const {Recipe, Diet, DishType} = require('../db')
 //const {apiKey} = process.env;
 const {data} = require('../ApiExt.json');
 const {data1} = require('../recipe200Info.json')
@@ -75,22 +75,39 @@ const getApiRecipeInf = async (/* id */) => {
 
 const getDbRecipeInf = async (id) => {
     const recipeDbInfo = await Recipe.findByPk(id,{
-        include: {
-        model: Diet,
-        atributes: ["name"],
-        through: {
-            attributes: [],
+        include: [
+            {
+            model: Diet,
+            atributes: ["name"],
+            through: {
+                attributes: [],
+                },
             },
-        },
+            {
+            model: DishType,
+            atributes: ["name"],
+            through: {
+                attributes: [],
+                },
+            }
+        ]
     });
     return recipeDbInfo;
 };
 
 const addDietsToDb = async () => {
     const diets = ["gluten free", "ketogenic", "vegetarian", "lacto-vegetarian","ovo-vegetarian", "vegan", "pescetarian", "paleo", "primal", "low fodmap", "whole30"]
-    const promises = diets.map(d => Diet.findOrCreate({
+    const dishTypes = ["main course","side dish","dessert","appetizer"," salad","bread","breakfast","soup","beverage","sauce","marinade","fingerfood","snack","drink"]
+
+    const promise1 = diets.map(d => Diet.findOrCreate({
     where: {name : d}}))
-    await Promise.all(promises)
+    const promise2 = dishTypes .map(d => DishType.findOrCreate({
+        where: {name : d}}))
+
+    const promises = promise1.concat(promise2)
+
+
+     await Promise.all(promises)
 };
 
 

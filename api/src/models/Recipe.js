@@ -30,7 +30,8 @@ module.exports = (sequelize) => {
     },
     healthScore: {
       type: DataTypes.DECIMAL,
-      defaultValue: null
+      defaultValue: null,
+      defaultValue: 0
     },
     img: {
       type: DataTypes.STRING,
@@ -38,7 +39,8 @@ module.exports = (sequelize) => {
     },
     steps: {
       type: DataTypes.TEXT,
-      defaultValue: null
+      defaultValue: null,
+      allowNull: false
     },
   },{
     timestamps : false

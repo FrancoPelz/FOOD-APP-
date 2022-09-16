@@ -1,10 +1,9 @@
 const { Router } = require('express');
-const {Recipe} = require('../db');
-const {Diet} = require('../db');
+const {Recipe, Diet, DishType} = require('../db');
 const { getAllRecipes, getApiRecipeInf,addDietsToDb, getDbRecipeInf } = require('./utils');
 const router = Router();
 
-router.get("/", async (req, res, next) => {
+router.get("", async (req, res, next) => {
     const {name} = req.query;
 
     try {
@@ -42,14 +41,17 @@ router.get("/:id", async (req, res, next) => {
 })
 
 
-router.post("/", async (req, res, next) => {
-    const {name, summary,healthScore, img, steps, diets} = req.body;
+router.post("", async (req, res, next) => {
+    const {name, summary,healthScore, img, steps, diets, dishTypes} = req.body;
     await addDietsToDb();
     try {
         if(!name)
-           return res.status(404).send("You must put a Name");
+           return res.status(400).send("You must put a Name");
         if(!summary)
-           return res.status(404).send("You must put a Summary");
+           return res.status(400).send("You must put a Summary");
+        if(!steps)
+        return res.status(400).send("You must put instructions to prepare this recipe");
+        
 
 
         let newRecipe = await Recipe.create({
@@ -62,6 +64,15 @@ router.post("/", async (req, res, next) => {
           })
           await newRecipe.addDiet(dietDb)
         }
+        else return res.status(400).send("You must select a type of diet");
+
+        if(dishTypes){
+            const dishTypeDb = await DishType.findAll({
+                where : {name: dishTypes}
+            })
+            await newRecipe.addDishType(dishTypeDb)
+          }
+        else return res.status(400).send("You must select a type");
 
         res.status(201).send("Succes")
         
