@@ -11,6 +11,7 @@ const getApiRecipes = async () => {
     //const apiRecipes = await apiUrl.data.results.map(r => { 
     const apiRecipes = await apiUrl.data.results.map(r => {   
         return {
+            id: r.id,
             name: r.title,
             img : r.image,
             diets : r.diets.map (el => el), 
@@ -35,9 +36,11 @@ const getDbRecipes = async () => {
 
     const dbRecipes = await recipes.map(r => {   
         return {
+            id: r.id,
             name: r.name,
             img : r.img,
             diets : r.diets.map (el => el.name), 
+            dishTypes : r.dishTypes.map (el => el.name), 
             healthScore: r.healthScore  
         }
 
@@ -49,7 +52,7 @@ const getDbRecipes = async () => {
 const getAllRecipes = async () => {
     const apiInfo = await getApiRecipes();
     const dbInfo = await getDbRecipes();
-    const allInfo = apiInfo.concat(dbInfo);
+    const allInfo = dbInfo.concat(apiInfo);
 
     return allInfo;
 }
@@ -120,4 +123,5 @@ module.exports = {
       getApiRecipeInf,
       getDbRecipeInf,
       addDietsToDb,
+      getDbRecipes
 }

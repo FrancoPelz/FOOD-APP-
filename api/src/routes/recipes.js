@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {Recipe, Diet, DishType} = require('../db');
-const { getAllRecipes, getApiRecipeInf,addDietsToDb, getDbRecipeInf } = require('./utils');
+const { getAllRecipes, getApiRecipeInf,addDietsToDb, getDbRecipeInf, getDbRecipes } = require('./utils');
 const router = Router();
 
 router.get("", async (req, res, next) => {
@@ -11,13 +11,27 @@ router.get("", async (req, res, next) => {
         if(name){
             let recipesList = await totalRecipes.filter(r => r.name.toLowerCase().includes(name.toLowerCase()));
             if (recipesList.length) return res.send(recipesList); 
-            else return res.status(404).send(`There is no recipes with ${name}`);
+            else return res.status(404).send(`There are no recipes with ${name}`);
         } 
         res.json(totalRecipes);  
     } catch (error) {
         next(error);   
     } 
 });
+
+router.get("/created", async (req, res, next) => {
+
+    try {
+        let DbRecipes = await getDbRecipes();
+        if(DbRecipes){
+            return res.send(DbRecipes); 
+        } 
+        else return res.status(404).send(`There are no recipes recipes created yet`);
+    } catch (error) {
+        next(error);   
+    } 
+});
+
 
 router.get("/:id", async (req, res, next) => {
     const {id} = req.params;
@@ -31,9 +45,9 @@ router.get("/:id", async (req, res, next) => {
             return res.send(infoDb)
         }
        
-        const apiUrl = await getApiRecipeInf(id)
-        if(!apiUrl) return res.status(404).send("Recipe doesn`t exist")
-        return res.send(apiUrl)
+        const apiInfo = await getApiRecipeInf(id)
+        if(!apiInfo) return res.status(404).send("Recipe doesn`t exist")
+        return res.send(apiInfo)
 
     } catch (error) {
         next(error);
