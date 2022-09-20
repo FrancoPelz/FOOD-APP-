@@ -56,7 +56,7 @@ router.get("/:id", async (req, res, next) => {
 
 
 router.post("", async (req, res, next) => {
-    const {name, summary,healthScore, img, steps, diets, dishTypes} = req.body;
+    const {name, summary,healthScore, image, steps, diets, dishTypes} = req.body;
     await addDietsToDb();
     try {
         if(!name)
@@ -69,7 +69,7 @@ router.post("", async (req, res, next) => {
 
 
         let newRecipe = await Recipe.create({
-            name, summary, healthScore, img, steps, diets
+            name, summary, healthScore, image, steps
         });
 
         if(diets){
@@ -77,6 +77,7 @@ router.post("", async (req, res, next) => {
               where : {name: diets}
           })
           await newRecipe.addDiet(dietDb)
+          console.log(dietDb)
         }
         else return res.status(400).send("You must select a type of diet");
 
@@ -85,8 +86,9 @@ router.post("", async (req, res, next) => {
                 where : {name: dishTypes}
             })
             await newRecipe.addDishType(dishTypeDb)
+            console.log(newRecipe)
           }
-        else return res.status(400).send("You must select a type");
+        else return res.status(400).send("You must select a type"); 
 
         res.status(201).send("Succes")
         

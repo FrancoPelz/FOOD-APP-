@@ -1,7 +1,6 @@
 const axios = require('axios');
 const {Recipe, Diet, DishType} = require('../db')
 //const {apiKey} = process.env;
-const {data} = require('../ApiExt.json');
 const {data1} = require('../recipe200Info.json')
 
 
@@ -13,7 +12,7 @@ const getApiRecipes = async () => {
         return {
             id: r.id,
             name: r.title,
-            img : r.image,
+            image : r.image,
             diets : r.diets.map (el => el), 
             healthScore: r.healthScore  
         }
@@ -38,9 +37,8 @@ const getDbRecipes = async () => {
         return {
             id: r.id,
             name: r.name,
-            img : r.img,
+            image : r.image,
             diets : r.diets.map (el => el.name), 
-            dishTypes : r.dishTypes.map (el => el.name), 
             healthScore: r.healthScore  
         }
 
@@ -66,7 +64,7 @@ const getApiRecipeInf = async (/* id */) => {
         name: apiInf.title,
         summary: apiInf.summary ,
         healthScore: apiInf.healthScore,
-        img: apiInf.image ,
+        image: apiInf.image ,
         steps: apiInf.instructions,
         diets: apiInf.diets.map(el => el), 
         types: apiInf.dishTypes?.map(el => el)
