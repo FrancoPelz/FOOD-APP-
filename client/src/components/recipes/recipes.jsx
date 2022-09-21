@@ -5,8 +5,11 @@ import Recipe from "../recipe/recipe";
 
 export default function Recipes(){
 
-    let recipes = useSelector((state) => state.filteredRecipes) 
-    let dispatch = useDispatch()
+    const recipes = useSelector((state) => state.filteredRecipes) 
+
+
+    const dispatch = useDispatch()
+
     useEffect(() => {
         dispatch(fetchRecipes())
     }, []) 

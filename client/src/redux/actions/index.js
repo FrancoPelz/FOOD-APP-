@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const FETCH_RECIPES = 'FETCH_RECIPES'
 export const SEARCH_RECIPES = 'SEARCH_RECIPES'
-export const SORT_BY_HEALTH_SCORE = 'SORT_BY_HEALTH_SCORE'
+export const ORDER_BY_HEALTH_SCORE = 'ORDER_BY_HEALTH_SCORE'
 export const POST_RECIPE = 'POST_RECIPE'
 export const GET_TYPE_DIETS = 'GET_TYPE_DIETS'
 export const GET_DISH_TYPES = 'GET_DISH_TYPES'
@@ -41,10 +41,10 @@ export function searchRecipes(search) {
 }
 
 
-export function sortByHealthScore(order){
+export function orderByHealthScore(order){
     return {
-        type: SORT_BY_HEALTH_SCORE,
-        payload: order
+        type: ORDER_BY_HEALTH_SCORE,
+        payload : order
     }
 }
 

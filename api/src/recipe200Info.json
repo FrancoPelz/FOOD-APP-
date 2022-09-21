@@ -30,9 +30,9 @@
     "American"
     ],
     "dishTypes": [
-    "salad", "pedo"
+        "main course","side dish"
     ],
-    "diets": [],
+    "diets": ["vegan", "primal"],
     "occasions": [],
     "winePairing": {
     "pairedWines": [],
