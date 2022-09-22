@@ -43,7 +43,7 @@ export default function AddRecipe() {
     useEffect(() => {
         dispatch(getDiets());
         dispatch(getDishTypes());
-    },[]) 
+    },[dispatch]) 
 
     let handleChange = (e) =>{
         e.preventDefault();

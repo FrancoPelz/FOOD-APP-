@@ -14,14 +14,14 @@ export default function Recipe() {
         return () => {
             setRecipe(null)
         } 
-    }, []) 
+    }, [id]) 
 
 
 
     return <div>
         {
             recipe?
-            <>
+            <div key={recipe.id}>
 
             <h3>{recipe.name}</h3>
             <img src={recipe.image} alt='imagen'/>
@@ -39,11 +39,11 @@ export default function Recipe() {
             }
             </div>
             <h5>Summary</h5>
-            <p>{recipe.summary}</p>
+            <p>{recipe.summary.replace(/<[^>]*>?/g, "")}</p>
             <h5>How to prepare:</h5>
             <p>{recipe.steps}</p>
 
-            </> : 
+            </div> : 
             <div>loading...</div>
         }
     </div>

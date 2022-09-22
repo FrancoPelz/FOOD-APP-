@@ -9,7 +9,8 @@ export default function SearchBar() {
 
     function onSubmit(e){
         e.preventDefault();
-        dispatch(searchRecipes(search))
+        dispatch(searchRecipes(search));
+        setSearch('');
     }
 
 
@@ -21,12 +22,10 @@ export default function SearchBar() {
     
     return (
         <div>
-            <form onSubmit={onSubmit}>
-              <input type='text' onChange={onInputChange} value={search} placeholder="what are you looking for?"/> 
+            <form onSubmit={(e) => {onSubmit(e)}}>
+              <input type='text' onChange={onInputChange} value={search} placeholder="What are you looking for?"/> 
               <input type='submit' value="Search"/>
             </form>
-            
-
         </div>
     )
 }

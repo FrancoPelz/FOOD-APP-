@@ -1,4 +1,4 @@
-import { FETCH_RECIPES, SEARCH_RECIPES, ORDER_BY_HEALTH_SCORE, POST_RECIPE, GET_TYPE_DIETS, GET_DISH_TYPES } from "../actions";
+import { FETCH_RECIPES, SEARCH_RECIPES, ORDER_BY_HEALTH_SCORE, POST_RECIPE, GET_TYPE_DIETS, GET_DISH_TYPES, ORDER_BY_ABC, FILTER_BY_DIET, FILTER_BY_TYPE } from "../actions";
 
 const initiaState = {
     recipes  : [],
@@ -43,6 +43,45 @@ export default function rootReducer(state = initiaState, action  ) {
             return {
                 ...state,
                 filteredRecipes: orderedRecipes
+            }
+
+        case ORDER_BY_ABC:
+            let orderedABC = [...state.recipes]
+            orderedABC = 
+              action.payload === 'atoz' ? 
+              orderedABC.sort((a,b) => {
+                  if (a.name.toLowerCase() < b.name.toLowerCase()) return -1; 
+                  if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                  return 0;
+            }) :
+              orderedABC.sort((a,b) => {
+                  if (a.name.toLowerCase() < b.name.toLowerCase()) return 1; 
+                  if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+                  return 0;
+            })
+            return {
+                ...state,
+                filteredRecipes: orderedABC
+            } 
+
+        case FILTER_BY_DIET:
+            const allrecipes = state.recipes
+            const dietFiltered = action.payload === 'all'? allrecipes :
+            allrecipes.filter(t => t.diets.find(e => e === action.payload));
+ 
+            return {
+                ...state ,
+                filteredRecipes : dietFiltered
+            }
+            
+        case FILTER_BY_TYPE:
+            const alltypes = state.recipes
+            const typeFiltered = action.payload === 'all'? alltypes :
+            alltypes.filter(t => t.dishTypes.find(e => e === action.payload));
+ 
+            return {
+                ...state ,
+                filteredRecipes : typeFiltered
             }
 
         case POST_RECIPE:

@@ -14,7 +14,8 @@ const getApiRecipes = async () => {
             name: r.title,
             image : r.image,
             diets : r.diets.map (el => el), 
-            healthScore: r.healthScore  
+            healthScore: r.healthScore, 
+            dishTypes: r.dishTypes.map (el => el)
         }
     
 
@@ -24,13 +25,22 @@ const getApiRecipes = async () => {
 
 const getDbRecipes = async () => { 
     const recipes =  await Recipe.findAll({
-        include:{
+        include: [
+            {
             model: Diet,
-            attributes:['name'],
+            atributes: ["name"],
             through: {
                 attributes: [],
+                },
             },
-        }
+            {
+            model: DishType,
+            atributes: ["name"],
+            through: {
+                attributes: [],
+                },
+            }
+        ]
     });
 
     const dbRecipes = await recipes.map(r => {   
@@ -38,8 +48,9 @@ const getDbRecipes = async () => {
             id: r.id,
             name: r.name,
             image : r.image,
-            diets : r.diets.map (el => el.name), 
-            healthScore: r.healthScore  
+            diets : r.diets.map (el => el.name),
+            dishTypes : r.dishTypes.map ( el => el.name), 
+            healthScore: r.healthScore,
         }
 
     });
@@ -96,16 +107,18 @@ const getDbRecipeInf = async (id) => {
     return recipeDbInfo;
 };
 
-const addDietsToDb = async () => {
-    const diets = ["gluten free", "ketogenic", "vegetarian", "lacto-vegetarian","ovo-vegetarian", "vegan", "pescetarian", "paleo", "primal", "low fodmap", "whole30"]
-    const dishTypes = ["main course","side dish","dessert","appetizer"," salad","bread","breakfast","soup","beverage","sauce","marinade","fingerfood","snack","drink"]
+const addDietsTypesToDb = async () => {
+    apiTypes = ["main course","side dish","dessert","appetizer"," salad","bread","breakfast","soup","beverage","sauce","marinade","fingerfood","snack","drink"]
 
-    const promise1 = diets.map(d => Diet.findOrCreate({
-    where: {name : d}}))
-    const promise2 = dishTypes .map(d => DishType.findOrCreate({
+    const apiRecipes = await getApiRecipes()
+    const promise1 = apiRecipes.map(r => r.diets.map(d => Diet.findOrCreate({
+        where: {name : d}})))
+    const promise2 = apiRecipes.map(r => r.dishTypes.map(d => DishType.findOrCreate({
+        where: {name : d}})))
+    const promise3 = apiTypes.map(d => DishType.findOrCreate({
         where: {name : d}}))
 
-    const promises = promise1.concat(promise2)
+    const promises = promise1.concat(promise2, promise3)
 
 
      await Promise.all(promises)
@@ -120,6 +133,6 @@ module.exports = {
       getAllRecipes,
       getApiRecipeInf,
       getDbRecipeInf,
-      addDietsToDb,
+      addDietsTypesToDb,
       getDbRecipes
 }

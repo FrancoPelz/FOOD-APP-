@@ -6,6 +6,9 @@ export const ORDER_BY_HEALTH_SCORE = 'ORDER_BY_HEALTH_SCORE'
 export const POST_RECIPE = 'POST_RECIPE'
 export const GET_TYPE_DIETS = 'GET_TYPE_DIETS'
 export const GET_DISH_TYPES = 'GET_DISH_TYPES'
+export const ORDER_BY_ABC = 'ORDER_BY_ABC'
+export const FILTER_BY_DIET ='FILTER_BY_DIET'
+export const FILTER_BY_TYPE  = 'FILTER_BY_TYPE'
 
 
 export function fetchRecipes() {
@@ -38,15 +41,36 @@ export function searchRecipes(search) {
         })
         
     };
-}
+};
 
 
 export function orderByHealthScore(order){
     return {
         type: ORDER_BY_HEALTH_SCORE,
         payload : order
-    }
-}
+    };
+};
+
+export function orderByABC(order){
+    return {
+        type: ORDER_BY_ABC,
+        payload : order
+    };
+};
+
+export function filterByDiet(diet){
+    return {
+        type: FILTER_BY_DIET,
+        payload : diet
+    };
+};
+
+export function filterByType(type){
+    return {
+        type: FILTER_BY_TYPE,
+        payload : type
+    };
+};
 
 export function getDiets (){
     
@@ -57,8 +81,8 @@ export function getDiets (){
             payload: json.data
         })
 
-    }
-}
+    };
+};
 
 export function getDishTypes (){
     
@@ -69,10 +93,8 @@ export function getDishTypes (){
             payload: json.data
         })
 
-    }
-}
-
-
+    };
+};
 
 
 
@@ -80,5 +102,5 @@ export function postRecipes (payload) {
     return async function(dispatch){
         var json = await axios.post('http://localhost:3001/api/recipes', payload);
         return json
-    }
-}
+    };
+};

@@ -1,13 +1,15 @@
 const { Router } = require('express');
 const {Recipe, Diet, DishType} = require('../db');
-const { getAllRecipes, getApiRecipeInf,addDietsToDb, getDbRecipeInf, getDbRecipes } = require('./utils');
+const { getAllRecipes, getApiRecipeInf, getDbRecipeInf, getDbRecipes, addDietsTypesToDb } = require('./utils');
 const router = Router();
 
 router.get("", async (req, res, next) => {
     const {name} = req.query;
 
     try {
+        await addDietsTypesToDb()
         let totalRecipes = await getAllRecipes();
+        
         if(name){
             let recipesList = await totalRecipes.filter(r => r.name.toLowerCase().includes(name.toLowerCase()));
             if (recipesList.length) return res.send(recipesList); 
@@ -35,10 +37,9 @@ router.get("/created", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
     const {id} = req.params;
-    await addDietsToDb();
 
     try {
-        if(id.length>12){
+        if(id.length>30){
             console.log(id)
             const infoDb = await getDbRecipeInf(id)
             if(!infoDb) return res.status(404).send("Recipe doesn`t exist")
@@ -57,7 +58,6 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("", async (req, res, next) => {
     const {name, summary,healthScore, image, steps, diets, dishTypes} = req.body;
-    await addDietsToDb();
     try {
         if(!name)
            return res.status(400).send("You must put a Name");

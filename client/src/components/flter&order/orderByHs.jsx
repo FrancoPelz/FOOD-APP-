@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { orderByHealthScore} from "../../redux/actions"
 
 
-export default function Order(){
+export default function OrderHs(){
 
     const dispatch = useDispatch()
     
@@ -12,9 +12,12 @@ export default function Order(){
     }
 
     return (
-        <select  onChange={onSelectChange}>
-            <option value={"ascendent"}>ascendete</option>
-            <option value={"descendet"}>descedente</option>
-        </select>
+        
+            <select  onChange={onSelectChange}>
+                <option value={"ascendent"}>Max-Min</option>
+                <option value={"descendet"}>Min-Max</option>
+            </select>
+            
+        
     )
 }
