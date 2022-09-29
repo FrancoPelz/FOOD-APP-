@@ -1,0 +1,72 @@
+.bkg{
+    background-image: url('../../icons/fondo\ create.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-position: center;
+    min-height: 100vh;
+    height:100%;
+    min-width: 90vw;
+    width: 100%;
+}
+.bkg2{
+    background-color: rgba(238, 208, 157, 0.15);
+    backdrop-filter: blur(3px);
+    padding-bottom: 40px;
+}
+
+.check{
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+   
+}
+
+.types{
+    display: flex;
+    align-items: flex-start;
+}
+.types1{
+    margin-left: 100px;
+}
+
+.diets{
+    display: flex;
+    align-items: flex-start;
+}
+
+.backBTN1{
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.backBTN{
+    background-image: url('../../icons/izq-removebg-preview.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    width: 50px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0ch;
+    padding-top: 20px;
+    margin-right: 20px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5)
+}
+.backBTN:hover{
+    cursor: pointer;
+    transform: scale(1.06);
+    transition: all 0.5s;
+
+}
+
+.danger{
+    display:inline;
+    color: red;
+    font-size: 14px;
+    padding: 2px;
+    margin: 2px;
+}
+

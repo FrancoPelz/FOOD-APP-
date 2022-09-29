@@ -12,7 +12,6 @@ export default function rootReducer(state = initiaState, action  ) {
 
     switch(action.type) {
         case FETCH_RECIPES:
-            console.log()
             return {
                 ...state,
                 recipes: action.payload,
@@ -27,7 +26,7 @@ export default function rootReducer(state = initiaState, action  ) {
 
 
         case ORDER_BY_HEALTH_SCORE:
-            let orderedRecipes = [...state.recipes]
+            let orderedRecipes = [...state.filteredRecipes]
             orderedRecipes = 
               action.payload === 'ascendent' ? 
               orderedRecipes.sort((a,b) => {
@@ -46,7 +45,7 @@ export default function rootReducer(state = initiaState, action  ) {
             }
 
         case ORDER_BY_ABC:
-            let orderedABC = [...state.recipes]
+            let orderedABC = [...state.filteredRecipes]
             orderedABC = 
               action.payload === 'atoz' ? 
               orderedABC.sort((a,b) => {

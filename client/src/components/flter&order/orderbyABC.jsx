@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux"
 import { orderByABC} from "../../redux/actions"
+import styles from '../flter&order/filter&order.module.css'
 
 export default function OrderABC(){
 
@@ -11,7 +12,8 @@ export default function OrderABC(){
     }
 
     return (
-        <select  onChange={onSelectChange}>
+        <select  onChange={onSelectChange} className={styles.filters}>
+            <option hidden >A-Z</option>
             <option value={"atoz"}>A-Z</option>
             <option value={"ztoa"}>Z-A</option>
         </select>

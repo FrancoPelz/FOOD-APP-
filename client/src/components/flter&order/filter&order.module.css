@@ -1,0 +1,14 @@
+select{
+    color: rgb(0, 0, 0);
+    background-color:rgba(126, 83, 44, 0.7);
+}
+
+select:hover {
+    border-color: #888;
+    box-shadow: 0px 0px 20px 5px rgba(167, 151, 137, 0.8);
+    cursor: pointer;
+  }
+
+
+
+

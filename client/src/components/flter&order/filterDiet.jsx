@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux"
 import { filterByDiet} from "../../redux/actions"
+import styles from '../flter&order/filter&order.module.css'
 
 export default function FilterDiet(){
 
@@ -11,7 +12,7 @@ export default function FilterDiet(){
     }
 
     return (  
-        <select onChange={e => handleFilter(e)}>
+        <select onChange={e => handleFilter(e)} className={styles.filters}>
             <option value="all">All Diets</option>
             <option value="gluten free">Gluten Free</option>
             <option value="ketogenic">Ketogenic</option>

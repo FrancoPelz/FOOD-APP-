@@ -104,7 +104,19 @@ const getDbRecipeInf = async (id) => {
             }
         ]
     });
-    return recipeDbInfo;
+
+    const RecipeDb = {
+        id : recipeDbInfo.id,
+        name: recipeDbInfo.title,
+        summary: recipeDbInfo.summary ,
+        healthScore: recipeDbInfo.healthScore,
+        image: recipeDbInfo.image ,
+        steps: recipeDbInfo.steps,
+        diets: recipeDbInfo.diets.map(el => el.name), 
+        types: recipeDbInfo.dishTypes?.map(el => el.name)
+        } 
+
+    return RecipeDb;
 };
 
 const addDietsTypesToDb = async () => {

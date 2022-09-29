@@ -1,0 +1,62 @@
+.pages{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.prevBTN{
+    background-image: url('../../icons/izq-removebg-preview.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    width: 50px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0ch;
+    padding-top: 20px;
+    margin-right: 20px;
+}
+.prevBTN:hover{
+    cursor: pointer;
+    transform: scale(1.06);
+    transition: all 0.5s;
+
+}
+
+.nextBTN{
+    background-image: url('../../icons/der-removebg-preview.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 50px;
+    height: 40px;
+    padding-top: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0ch;
+    margin-left: 20px;
+}
+.nextBTN:hover{
+    cursor: pointer;
+    transform: scale(1.06);
+    transition: all 0.5s; 
+
+}
+
+.pageN{
+    border: 0ch;
+    height: 36px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    padding-left: 10px;
+    padding-right: 10px ;
+    border-bottom: solid 2px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5)
+
+
+}

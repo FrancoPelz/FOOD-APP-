@@ -77,7 +77,6 @@ router.post("", async (req, res, next) => {
               where : {name: diets}
           })
           await newRecipe.addDiet(dietDb)
-          console.log(dietDb)
         }
         else return res.status(400).send("You must select a type of diet");
 
@@ -86,7 +85,6 @@ router.post("", async (req, res, next) => {
                 where : {name: dishTypes}
             })
             await newRecipe.addDishType(dishTypeDb)
-            console.log(newRecipe)
           }
         else return res.status(400).send("You must select a type"); 
 

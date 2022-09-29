@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { searchRecipes } from '../../redux/actions';
+import styles from '../searchBar/searchBar.module.css'
 
 export default function SearchBar() {
     const[search ,setSearch] = useState('')
@@ -16,15 +17,15 @@ export default function SearchBar() {
 
     function onInputChange(e){
         e.preventDefault();
-        setSearch(e.target.value)
+        setSearch(e.target.value);  
     }
 
     
     return (
         <div>
-            <form onSubmit={(e) => {onSubmit(e)}}>
-              <input type='text' onChange={onInputChange} value={search} placeholder="What are you looking for?"/> 
-              <input type='submit' value="Search"/>
+            <form className={styles.search} onSubmit={(e) => {onSubmit(e)}}>
+              <input className={styles.input} type='text' onChange={onInputChange} value={search} placeholder="What are you looking for?"/> 
+              <button  className={styles.btn}><input type='submit' hidden value=""/></button>
             </form>
         </div>
     )

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {fetchRecipes} from '../../redux/actions'
 import Pagination from "../pagination/pagination";
 import Recipe from "../recipe/recipe";
+import styles from "../recipes/recipes.module.css"
 
 
 export default function Recipes(){
@@ -13,6 +14,8 @@ export default function Recipes(){
 
     const dispatch = useDispatch()
 
+
+
     useEffect(() => {
         dispatch(fetchRecipes())
     }, [dispatch]) 
@@ -21,12 +24,15 @@ export default function Recipes(){
 
     return (
         <div>
+        <div className={styles.recipes}>
             {
-                recipes && recipes
+                recipes.length ?
+                 recipes
                 .slice((page-1) * perPage, (page-1) * perPage + perPage )
                 .map(r => 
-                <div key ={r.id}>  
-                    <Recipe                              
+                <div>  
+                    <Recipe   
+                    key={r.id}                           
                     id={r.id}
                     name={r.name}
                     image={r.image}
@@ -34,11 +40,12 @@ export default function Recipes(){
                     dishTypes={r.dishTypes} 
                     />  
                 <br/>
-                </div>)
+                </div>):
+                <div>Loading...</div>
             } 
-            <Pagination page={page} setPage={setPage} max={max}/>
-        </div>
             
-        
+        </div>
+        <Pagination page={page} setPage={setPage} max={max}/>
+        </div>
     )
 }

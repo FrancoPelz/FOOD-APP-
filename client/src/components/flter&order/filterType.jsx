@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux"
 import { filterByType} from "../../redux/actions"
+import styles from '../flter&order/filter&order.module.css'
 
 export default function FilterType(){
 
@@ -11,8 +12,8 @@ export default function FilterType(){
     }
 
     return (
-        <select onChange={e => handleFilter(e)}>
-            <option value="all">All Dish</option>
+        <select onChange={e => handleFilter(e)} className={styles.filters}>
+            <option value="all">All Dishes</option>
             <option value="main course">Main Course</option>
             <option value="main dish">Main Dish</option>
             <option value="side dish">Side Dish</option>

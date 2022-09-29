@@ -1,0 +1,102 @@
+.bkg{
+    background-image: url('../../icons/fondo\ create.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-position: center;
+    min-height: 100vh;
+    height:100%;
+    min-width: 90vw;
+    width: 100%;
+}
+
+
+.img{
+    height: 250px;
+    width: 350px;
+    border-radius: 90% 10% 81% 19% / 19% 85% 15% 81% ;
+    box-shadow: 4px 4px 10px 2px rgba(0, 0, 0, 0.55);
+    margin-bottom: 30px;
+    border: solid rgba(197, 197, 197, 0.5);
+    margin-top: 30px;
+    
+}
+
+.title{
+    display: inline-block;
+    font-weight: 700;
+    font-size: 25px;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.diseño{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left: 100px;
+    background-color: rgba(238, 208, 157, 0.5);
+    backdrop-filter: blur(3px);
+    margin: 100px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 480;
+}
+
+.izq{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+   
+
+}
+
+.der{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 800px;
+    margin-left: 100px;
+    margin-right: 20px;
+}
+
+
+.dietsTypes{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 100px;
+    margin-top: 0;
+    list-style-type: square;
+}
+
+
+.backBTN1{
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.backBTN{
+    background-image: url('../../icons/izq-removebg-preview.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    width: 50px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0ch;
+    padding-top: 20px;
+    margin-right: 20px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5)
+
+}
+.backBTN:hover{
+    cursor: pointer;
+    transform: scale(1.06);
+    transition: all 0.5s;
+
+}
+

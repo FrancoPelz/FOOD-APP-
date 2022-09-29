@@ -8,6 +8,10 @@ import FilterDiet from "../flter&order/filterDiet";
 import FilterType from "../flter&order/filterType";
 import { useDispatch } from "react-redux";
 import { fetchRecipes } from "../../redux/actions";
+import styles from '../home/home.module.css'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faArrowRotateRight} from '@fortawesome/free-solid-svg-icons'
+
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -18,23 +22,23 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <div className={styles.bkg}>
+          <ul className={styles.nav}>
+            <li className={styles.title}>Food App</li> 
+            <li><SearchBar/></li>
+            <li ><NavLink to={'/create'}><button className={styles.createBTN}>Create Recipe</button></NavLink></li>           
+          </ul>
           <br/>
-          <div>
-            <SearchBar/>
-            Filters:
+          <div className={styles.filter}>
             <OrderHs/>
             <OrderABC/>
             <FilterDiet/>
             <FilterType/>
-            <button onClick = {e => handleOnClick(e)}> Refresh Recipes</button>
-          </div>
-          <br/>
-          <nav>
-            <NavLink to={'/create'}>Create Recipe</NavLink>
-          </nav>
-            <Recipes/>  
+            <button onClick = {e => handleOnClick(e)} className={styles.RefBTN}></button>
+          </div> 
+          <br/> 
+          <Recipes/>
+          <br/>     
         </div>
-        
     )
 }

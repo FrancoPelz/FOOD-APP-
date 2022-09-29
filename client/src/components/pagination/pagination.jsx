@@ -1,4 +1,5 @@
 import React from "react";
+import styles from '../pagination/pagination.module.css'
 
 
 export default function Pagination({page, setPage, max}) {
@@ -11,11 +12,10 @@ export default function Pagination({page, setPage, max}) {
     };
 
     return (
-        <div>
-            <button onClick={previusPage} disabled={page===1 || page<1}>X</button>
-            <p>{page}</p>
-            <p>de {max}</p>
-            <button onClick={nextPage} disabled={page === max}>X</button>
+        <div className={styles.pages}>
+            <button className={styles.prevBTN} onClick={previusPage} disabled={page === 1}></button>
+              <div className={styles.pageN}>{page} - {max}</div>
+            <button  className={styles.nextBTN} onClick={nextPage} disabled={page === max}></button>
         </div>
     )
 }
