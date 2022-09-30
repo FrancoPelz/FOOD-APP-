@@ -37,7 +37,7 @@ export function searchRecipes(search) {
             });
         })
         .catch((error) => {
-            console.log(error)
+            console.log(error && alert(`⚠️ There are no recipes with ${search} ⚠️`))
         })
         
     };
@@ -99,8 +99,13 @@ export function getDishTypes (){
 
 
 export function postRecipes (payload) {
-    return async function(dispatch){
-        var json = await axios.post('http://localhost:3001/api/recipes', payload);
-        return json
+    return async function(){
+        try {
+            var json = await axios.post('http://localhost:3001/api/recipes', payload);
+            return console.log(alert("Recipe created succesfully ✅"))
+            
+        } catch (error) {
+            console.log(error && alert("⛔ Pleace, complete the form ⛔"))                    
+        }
     };
 };

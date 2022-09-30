@@ -5,7 +5,7 @@ import styles from '../recipeDetail/recipeDetail.module.css'
 
 export default function Recipe() {
 
-    const [recipe, setRecipe] = useState(null)
+    const [recipe, setRecipe] = useState("")
     let {id} = useParams()
     useEffect(()=> {
         axios.get(`http://localhost:3001/api/recipes/${id}`)
@@ -13,7 +13,7 @@ export default function Recipe() {
             setRecipe(response.data)
         })
         return () => {
-            setRecipe(null)
+            setRecipe("")
         } 
     }, [id]) 
 
@@ -52,9 +52,11 @@ export default function Recipe() {
                   <h5 className={styles.subtitle}>Summary:</h5>
                   <p>{recipe.summary.replace(/<[^>]*>?/g, "")}</p>
                   <h5 className={styles.subtitle}>How to prepare:</h5>
-                  <p>{recipe.steps}</p>
+                  { recipe.steps !== null ?
+                  <p>{recipe.steps.replace(/<[^>]*>?/g, "")}</p>:
+                  <span>There are steps to show</span>
+                  }
                 </div>
-                
               </div>
             </div> : 
             <div>loading...</div>

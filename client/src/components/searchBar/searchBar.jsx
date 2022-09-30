@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { searchRecipes } from '../../redux/actions';
 import styles from '../searchBar/searchBar.module.css'
 
-export default function SearchBar() {
+export default function SearchBar({setPage}) {
     const[search ,setSearch] = useState('')
 
     let dispatch = useDispatch()
@@ -11,7 +11,8 @@ export default function SearchBar() {
     function onSubmit(e){
         e.preventDefault();
         dispatch(searchRecipes(search));
-        setSearch('');
+        setSearch(''); 
+        setPage(1);
     }
 
 

@@ -59,13 +59,8 @@ router.get("/:id", async (req, res, next) => {
 router.post("", async (req, res, next) => {
     const {name, summary,healthScore, image, steps, diets, dishTypes} = req.body;
     try {
-        if(!name)
-           return res.status(400).send("You must put a Name");
-        if(!summary)
-           return res.status(400).send("You must put a Summary");
-        if(!steps)
-        return res.status(400).send("You must put instructions to prepare this recipe");
-        
+        if(!name || !summary || !steps )
+           return res.status(400).send("Pleace, complete the form");        
 
 
         let newRecipe = await Recipe.create({
@@ -88,7 +83,7 @@ router.post("", async (req, res, next) => {
           }
         else return res.status(400).send("You must select a type"); 
 
-        res.status(201).send("Succes")
+        res.status(201).send("New recipe created succesfully")
         
           
 

@@ -1,0 +1,53 @@
+.error{
+    background-image: url('../../icons/50ofthemostcreative404pagesontheweb.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    height:100%;
+    min-width: 90vw;
+    width: 100%;
+}
+
+.text{
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    font-size: 40px;
+    color: rgb(236, 188, 126);
+	text-shadow:
+		0 0 5px rgb(240, 170, 79),
+		0 0 10px rgb(211, 143, 55),
+		0 0 20px rgb(172, 106, 21),
+		0 0 40px rgb(156, 95, 15),
+		0 0 80px rgb(124, 74, 8),
+		0 0 90px rgb(95, 56, 4),
+		0 0 100px rgb(107, 62, 2),
+		0 0 140px rgb(65, 37, 2),
+		0 0 180px rgb(0, 0, 0);
+}
+
+.home{
+    margin-top: 40px;
+    background-color: rgba(85, 84, 84, 0);
+    color: aliceblue;
+    font-weight: 700;
+    height: 35px;
+    width: 70px;
+    border-radius: 5px;
+    box-shadow:
+		0 0 5px rgb(240, 170, 79),
+		0 0 10px rgb(211, 143, 55),
+		0 0 20px rgb(172, 106, 21),
+		0 0 40px rgb(156, 95, 15),
+		0 0 80px rgb(124, 74, 8),
+		0 0 90px rgb(95, 56, 4),
+		0 0 100px rgb(107, 62, 2),
+		0 0 140px rgb(65, 37, 2),
+		0 0 180px rgb(0, 0, 0);
+}
+
+.home:hover{
+    cursor: pointer;
+    transform: scale(1.06);
+    transition: all 0.5s;
+}

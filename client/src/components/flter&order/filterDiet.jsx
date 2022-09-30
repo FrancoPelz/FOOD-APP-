@@ -3,12 +3,13 @@ import { useDispatch } from "react-redux"
 import { filterByDiet} from "../../redux/actions"
 import styles from '../flter&order/filter&order.module.css'
 
-export default function FilterDiet(){
+export default function FilterDiet({setPage}){
 
     const dispatch = useDispatch()
     
     function handleFilter(e) {
-        dispatch(filterByDiet(e.target.value))
+        dispatch(filterByDiet(e.target.value));
+        setPage(1);
     }
 
     return (  

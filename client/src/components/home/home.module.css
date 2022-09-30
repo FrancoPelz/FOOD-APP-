@@ -9,30 +9,11 @@
     width: 100%;
 }
 
-.nav{
-    display: flex;
-    position: fixed;
-    width: 100%;
-    flex-direction: row;
-    list-style: none;
-    margin:0;
-    padding: 20px; 
-    justify-content: space-evenly;
-    background-color:rgba(126, 83, 44, 0.7);
-    z-index: 2;
-    
-}
-
 .filter{
     display: flex;
     justify-content: center;
     gap: 10px;    
-    padding-top: 50px;
-}
-
-.title{
-    font-size: large;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-top: 70px;
 }
 
 .RefBTN{
@@ -51,12 +32,58 @@
     transition: all 0.5s;
 }
 
+.recipes {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+}
+
+
+
+.nav{
+  display: flex;
+  position: fixed;
+  width: 100%;
+  flex-direction: row;
+  list-style: none;
+  margin-top: 0;
+  padding: 13px;
+  padding-left: 0;
+  padding-right: 0; 
+  justify-content: space-evenly;
+  background-color:rgba(126, 83, 44, 0.7);
+  z-index: 2;
+  align-items: center;
+}
+
+.title{
+  font-size: 30px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:rgb(65, 27, 27) ;   
+}
+.link, .visited, .active {
+  text-decoration:none;
+}
+
+
+
 .createBTN{
-   
+  color: rgb(0, 0, 0);
+  background-color:rgba(126, 83, 44, 0.7);
+  border-radius: 5px;
+  height: 30px;
+
+ 
 }
 .createBTN:hover{
-    cursor: pointer;
+  border-color: #888;
+  box-shadow: 0px 0px 20px 5px rgba(167, 151, 137, 0.8);
+  cursor: pointer;
 }
+
 
 
 
