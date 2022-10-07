@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import Loading from "../loading/loading"
 import styles from '../recipeDetail/recipeDetail.module.css'
 
 export default function Recipe() {
@@ -16,6 +17,7 @@ export default function Recipe() {
             setRecipe("")
         } 
     }, [id]) 
+
 
 
 
@@ -57,9 +59,12 @@ export default function Recipe() {
                   <span>There are steps to show</span>
                   }
                 </div>
+
               </div>
             </div> : 
-            <div>loading...</div>
+            <div className={styles.loading}>
+            <Loading />
+            </div>
         }
     </div>)
 }

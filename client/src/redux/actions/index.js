@@ -102,7 +102,7 @@ export function postRecipes (payload) {
     return async function(){
         try {
             var json = await axios.post('http://localhost:3001/api/recipes', payload);
-            return console.log(alert("Recipe created succesfully ✅"))
+            return console.log(json, alert("Recipe created succesfully ✅"))
             
         } catch (error) {
             console.log(error && alert("⛔ Pleace, complete the form ⛔"))                    

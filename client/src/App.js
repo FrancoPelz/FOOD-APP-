@@ -1,7 +1,7 @@
 import './App.css';
 import RecipeDetail from './components/recipeDetail/recipeDetail';
 import Landing from './components/landingPage/landingPage';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Home from './components/home/home';
 import AddRecipe from './components/createRecipe/createRecipe';
 import NotFound from './components/notFound/notFound';

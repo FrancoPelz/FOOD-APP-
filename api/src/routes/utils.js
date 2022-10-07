@@ -1,12 +1,12 @@
 const axios = require('axios');
 const {Recipe, Diet, DishType} = require('../db')
 const {apiKey} = process.env;
-const {data1} = require('../recipe200Info.json')
 
 
 const getApiRecipes = async () => {
-    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&number=100&addRecipeInformation=true`)
-    //const apiUrl = await axios.get('https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5')
+    //const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&number=100&addRecipeInformation=true`)
+    //Se utiliza la api de mocky para cono tener problemas con el numero de llamados limitados:
+    const apiUrl = await axios.get('https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5')
     const apiRecipes = await apiUrl.data.results.map(r => {   
         return {
             id: r.id,
@@ -66,21 +66,23 @@ const getAllRecipes = async () => {
 }
 
 const getApiRecipeInf = async (id) => {
-    const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`)
-    const apiInf = apiUrl.data
-    //const apiInf = await data1
-      const infoRecipeDb = {
-        id : apiInf.id,
+    //const apiUrl = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`)
+    const apiUrl = await axios.get('https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5')
+
+    const apiInf = apiUrl.data.results.find(el => el.id == id) 
+
+      const infoRecipe = {
+        id: apiInf.id,
         name: apiInf.title,
-        summary: apiInf.summary ,
+        summary: apiInf.summary,
         healthScore: apiInf.healthScore,
-        image: apiInf.image ,
-        steps: apiInf.instructions,
-        diets: apiInf.diets.map(el => el), 
+        image: apiInf.image,
+        steps: apiInf.analyzedInstructions.length? apiInf.analyzedInstructions[0].steps.map(el => el.step).join(" \n"): null,
+        diets: apiInf.diets?.map(el => el), 
         types: apiInf.dishTypes?.map(el => el)
         } 
 
-    return infoRecipeDb;
+    return infoRecipe;
 
 };
 

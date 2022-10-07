@@ -3,13 +3,14 @@ import OrderHs from "../flter&order/orderByHs";
 import OrderABC from "../flter&order/orderbyABC";
 import FilterDiet from "../flter&order/filterDiet";
 import FilterType from "../flter&order/filterType";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../../redux/actions";
 import styles from '../home/home.module.css'
 import SearchBar from "../searchBar/searchBar";
 import Pagination from "../pagination/pagination";
 import Recipe from "../recipe/recipe";
+import Loading from "../loading/loading";
 
 
 export default function Home() {
@@ -31,9 +32,9 @@ export default function Home() {
   return (
     <div className={styles.bkg}>
       <ul className={styles.nav}>
-        <li className={styles.title}><NavLink to={'/'}>FOOD APP</NavLink></li> 
+        <li ><Link to={'/'} className={styles.title}>FOOD APP</Link></li> 
         <li><SearchBar  setPage={setPage}/></li>
-        <li ><NavLink to={'/create'}><button className={styles.createBTN}>Create Recipe</button></NavLink></li>           
+        <li ><Link to={'/create'}><button className={styles.createBTN}>Create Recipe</button></Link></li>           
       </ul>
       <div className={styles.filter}>
         <OrderHs/>
@@ -60,7 +61,7 @@ export default function Home() {
             />  
         <br/>
         </div>):
-        <div>Loading...</div>
+        <Loading/>
       }    
     </div>
     <Pagination page={page} setPage={setPage} max={max}/>

@@ -32,7 +32,7 @@ export default function AddRecipe() {
     const [error, setError] = useState('');
     
     const [checkedStateD, setCheckedStateD] = useState(
-        new Array(10).fill(false)
+        new Array(11).fill(false)
     );
     const [checkedStateT, setCheckedStateT] = useState(
        new Array(23).fill(false)
