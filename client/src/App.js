@@ -4,7 +4,7 @@ import Landing from './components/landingPage/landingPage';
 import { Route } from 'react-router-dom';
 import Home from './components/home/home';
 import AddRecipe from './components/createRecipe/createRecipe';
-import NotFound from './components/notFound/notFound';
+//import NotFound from './components/notFound/notFound';
 
 
 function App() {

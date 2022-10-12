@@ -49,8 +49,8 @@ export default function Home() {
         recipes.length ?
          recipes
         .slice((page-1) * perPage, (page-1) * perPage + perPage )
-        .map(r => 
-        <div>  
+        .map((r,i) => 
+        <div key={i}>  
             <Recipe   
             key={r.id}                           
             id={r.id}

@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "../recipe/recipe.module.css"
 
 export default function Recipe({id, name, image, diets} ) {
-    return( 
-
+    return(
       <Link to={`recipes/${id}`}>
       <div className={styles.container} key={id}>        
           <img className={styles.img} src={image} alt='imagen'/>  
