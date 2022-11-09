@@ -13,32 +13,16 @@
 - Aprender y practicar el workflow de GIT.
 - Usar y practicar testing.
 
-## Horarios y Fechas
 
-El proyecto tendrá una duración máxima de tres semanas. En el caso de que completan todas las tareas antes de dicho lapso podrán avisar a su Instructor para coordinar una fecha de presentación del trabajo (DEMO).
+## Para iniciar
 
-## Comenzando
+Una vez clonado el repositorio instalar las dependencias:
 
- 1. Forkear el repositorio para tener una copia del mismo en sus cuentas
- 2. Clonar el repositorio en sus computadoras para comenzar a trabajar
+ 1. realizar npm install en la carpeta api
+ 2. realizar npm install en la carpeta client
 
-Tendrán un `boilerplate` con la estructura general tanto del servidor como de cliente.
 
 __IMPORTANTE:__ Es necesario contar minimamente con la última versión estable de Node y NPM. Asegurarse de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto.
-
-Actualmente las versiónes necesarias son:
-
-- __Node__: 12.18.3 o mayor
-- __NPM__: 6.14.16 o mayor
-
-Para verificar que versión tienen instalada:
-
-```bash
-node -v
-npm -v
-```
-
-__ACLARACIÓN:__ Las dependencias actuales se encuentran en las versiones que venimos trabajando durante el bootcamp.
 
 Versiones:
 
@@ -48,46 +32,18 @@ Versiones:
 - __redux__: 4.0.5
 - __react-redux__: 7.2.3
 
-Está permitido, __bajo su responsabilidad__, actualizar las dependencias a versiones más actuales.
 
-> __IMPORTANTE:__ Versiones mas actuales podrían presentar configuraciones diferentes respecto a las versiones en las que venimos trabajando durante el bootcamp.
-
-## BoilerPlate
-
-El boilerplate cuenta con dos carpetas: `api` y `client`. En estas carpetas estará el código del back-end y el front-end respectivamente.
-
-En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
-
-```env
-DB_USER=usuariodepostgres
-DB_PASSWORD=passwordDePostgres
-DB_HOST=localhost
-```
-
-Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
-
-Adicionalmente será necesario que creen desde psql una base de datos llamada `food`
-
-El contenido de `client` fue creado usando: Create React App.
 
 ## Enunciado
 
-La idea general es crear una aplicación en la cual se puedan ver distintas recetas de comida junto con información relevante de las mismas utilizando la api externa [spoonacular](https://spoonacular.com/food-api) y a partir de ella poder, entre otras cosas:
+La idea general es crear una aplicación en la cual se puedan ver distintas recetas de comida junto con información relevante de las mismas utilizando la api externa (utilice mocky para no tener limite de llamados) y a partir de ella poder, entre otras cosas:
 
 - Buscar recetas
 - Filtrarlos / Ordenarlos
 - Crear nuevas recetas propias
 
-__IMPORTANTE__: Para poder utilizar esta API externa es necesario crearse una cuenta para obtener una API Key que luego debera ser incluida en todos los request que hagamos a spoonacular simplemente agregando `?apiKey={YOUR_API_KEY}` al final de cada endpoint. Agregar la clave en el archivo `.env` para que la misma no se suba al repositorio por cuestiones de seguridad y utilizarla desde allí. Por otro lado tienen un límite de requests por día por lo que usenlos con cuidado!
-
 __IMPORTANTE__: Para las funcionalidades de filtrado y ordenamiento NO pueden utilizar los endpoints de la API externa que ya devuelven los resultados filtrados u ordenados sino que deben realizarlo ustedes mismos. En particular alguno de los ordenamientos o filtrados debe si o si realizarse desde el frontend.
 
-### Únicos Endpoints/Flags que pueden utilizar
-
-- GET <https://api.spoonacular.com/recipes/complexSearch>
-  - Para obtener mayor información sobre las recetas, como por ejemplo el tipo de dieta deben agregar el flag `&addRecipeInformation=true` a este endpoint
-  - Para los tipos de dieta deben tener en cuenta las propiedades vegetarian, vegan, glutenFree por un lado y también analizar las que se incluyan dentro de la propiedad `diets`
-- GET <https://api.spoonacular.com/recipes/{id}/information>
 
 ### Requerimientos mínimos
 
@@ -179,7 +135,7 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
   - Crea una receta en la base de datos relacionada con sus tipos de dietas.
 - [ ] __GET /diets__:
   - Obtener todos los tipos de dieta posibles
-  - En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular [acá](https://spoonacular.com/food-api/docs#Diets)
+  - En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados.
 
 ## Testing
 
