@@ -15,12 +15,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      set(input){
+      set(input) {
         this.setDataValue('name', input.toLowerCase());
       },
-      get(){
+      get() {
         let input = this.getDataValue('name');
-        let output = input[0].toUpperCase()+input.slice(1);
+        let output = input[0].toUpperCase() + input.slice(1);
         return output;
       }
     },
@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       defaultValue: "",
     },
-  },{
-    timestamps : false
+  }, {
+    timestamps: false
   });
 };

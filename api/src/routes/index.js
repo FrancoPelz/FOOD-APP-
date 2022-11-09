@@ -8,7 +8,7 @@ const router = Router();
 
 router.use('/recipes', recipesRoute);
 router.use('/diets', dietsRoute);
-router.use('/dishTypes',typesRoute);
+router.use('/dishTypes', typesRoute);
 
 
 module.exports = router;

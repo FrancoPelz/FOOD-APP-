@@ -24,8 +24,7 @@ export default function Home() {
   }, [dispatch]) 
   const max = Math.ceil(recipes.length / perPage)
 
-  function handleOnClick(e){
-    e.preventDefault();
+  function handleOnClick(){
     dispatch(fetchRecipes())   
     }
 
@@ -41,7 +40,7 @@ export default function Home() {
         <OrderABC/>
         <FilterDiet setPage={setPage}/>
         <FilterType setPage={setPage}/>
-        <button onClick = {e => handleOnClick(e)} className={styles.RefBTN}></button>
+        <button onClick = {() => handleOnClick()} className={styles.RefBTN}></button>
       </div> 
     <br/> 
     <div className={styles.recipes}>

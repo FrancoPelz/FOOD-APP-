@@ -1,53 +1,53 @@
 const { Router } = require('express');
-const {Recipe, Diet, DishType} = require('../db');
-const { getAllRecipes, getApiRecipeInf, getDbRecipeInf, getDbRecipes, addDietsTypesToDb } = require('./utils');
+const { Recipe, Diet, DishType } = require('../db');
+const { getAllRecipes, getApiRecipeInf, getDbRecipeInf, getDbRecipes, addDietsTypesToDb, getApiRecipes } = require('./utils');
 const router = Router();
 
 router.get("", async (req, res, next) => {
-    const {name} = req.query;
+    const { name } = req.query;
 
     try {
         await addDietsTypesToDb()
         let totalRecipes = await getAllRecipes();
-        
-        if(name){
+
+        if (name) {
             let recipesList = await totalRecipes.filter(r => r.name.toLowerCase().includes(name.toLowerCase()));
-            if (recipesList.length) return res.send(recipesList); 
+            if (recipesList.length) return res.send(recipesList);
             else return res.status(404).send(`There are no recipes with ${name}`);
-        } 
-        res.json(totalRecipes);  
+        }
+        res.json(totalRecipes);
     } catch (error) {
-        next(error);   
-    } 
+        next(error);
+    }
 });
 
 router.get("/created", async (req, res, next) => {
 
     try {
         let DbRecipes = await getDbRecipes();
-        if(DbRecipes){
-            return res.send(DbRecipes); 
-        } 
+        if (DbRecipes) {
+            return res.send(DbRecipes);
+        }
         else return res.status(404).send(`There are no recipes recipes created yet`);
     } catch (error) {
-        next(error);   
-    } 
+        next(error);
+    }
 });
 
 
 router.get("/:id", async (req, res, next) => {
-    const {id} = req.params;
+    const { id } = req.params;
 
     try {
-        if(id.length>30){
+        if (id.length > 30) {
             console.log(id)
             const infoDb = await getDbRecipeInf(id)
-            if(!infoDb) return res.status(404).send("Recipe doesn`t exist")
+            if (!infoDb) return res.status(404).send("Recipe doesn`t exist")
             return res.send(infoDb)
         }
-       
+
         const apiInfo = await getApiRecipeInf(id)
-        if(!apiInfo) return res.status(404).send("Recipe doesn`t exist")
+        if (!apiInfo) return res.status(404).send("Recipe doesn`t exist")
         return res.send(apiInfo)
 
     } catch (error) {
@@ -56,40 +56,41 @@ router.get("/:id", async (req, res, next) => {
 })
 
 
+
 router.post("", async (req, res, next) => {
-    const {name, summary,healthScore, image, steps, diets, dishTypes} = req.body;
+    const { name, summary, healthScore, image, steps, diets, dishTypes } = req.body;
     try {
-        if(!name || !summary || !steps )
-           return res.status(400).send("Pleace, complete the form");        
+        if (!name || !summary || !steps)
+            return res.status(400).send("Pleace, complete the form");
 
 
         let newRecipe = await Recipe.create({
             name, summary, healthScore, image, steps
         });
 
-        if(diets){
-          const dietDb = await Diet.findAll({
-              where : {name: diets}
-          })
-          await newRecipe.addDiet(dietDb)
+        if (diets) {
+            const dietDb = await Diet.findAll({
+                where: { name: diets }
+            })
+            await newRecipe.addDiet(dietDb)
         }
         else return res.status(400).send("You must select a type of diet");
 
-        if(dishTypes){
+        if (dishTypes) {
             const dishTypeDb = await DishType.findAll({
-                where : {name: dishTypes}
+                where: { name: dishTypes }
             })
             await newRecipe.addDishType(dishTypeDb)
-          }
-        else return res.status(400).send("You must select a type"); 
+        }
+        else return res.status(400).send("You must select a type");
 
         res.status(201).send("New recipe created succesfully")
-        
-          
+
+
 
 
     } catch (error) {
-           res.status(400).send("This recipe already exists")
+        res.status(400).send("This recipe already exists")
     }
 });
 
