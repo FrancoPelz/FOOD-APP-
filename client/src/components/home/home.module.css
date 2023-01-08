@@ -2,26 +2,37 @@ html {
   scroll-behavior: smooth;
 }
 
+.link, .visited, .active {
+  text-decoration:none;
+}
+
+
+
 .content {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 80px;
   grid-template-columns: repeat(12, 1fr);
+  background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(243, 230, 216));
+  
 }
+
 
 .main {
   grid-row: 1 / 6;
   grid-column: 1 / span 12;
-  background: lightcoral;
+  min-height: 88vh;
 }
 
 .nav {
-  background: lightseagreen;
   position: sticky;
   top: 0;
   z-index: 100;
   display: flex;
   flex-direction: column;
   padding: .7em;
+  background: rgb(115, 77, 38);
+  border-bottom: 3px solid rgb(77, 51, 25);
+  border-top: 3px solid rgb(77, 51, 25);
 }
 
 .nav ul {
@@ -30,10 +41,11 @@ html {
   justify-content: space-around;
   padding: 1.2em;
   list-style: none;
-
 }
 
-
+.nav ul:first-child{
+  color: #fff;
+}
 
 .recipes {
   display: flex;
@@ -55,11 +67,14 @@ html {
 
 
 
+
 .footer {
   grid-row: 6 / span 1;
   grid-column: 1 / span 12;
-  background: violet;
+  border-top: 3px solid rgb(77, 51, 25);
 }
+
+
 
 
 

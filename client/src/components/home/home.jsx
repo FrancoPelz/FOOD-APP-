@@ -37,7 +37,7 @@ export default function Home() {
         <article class={styles.main}>
           <div className={styles.nav}>
             <ul>
-              <li ><Link to={'/'} className={styles.title}>FOOD APP</Link></li>
+              <li className={styles.title}><h2>FOOD APP</h2></li>
               <li><SearchBar setPage={setPage} /></li>
               <li ><Link to={'/create'}><button className={styles.createBTN}>Create Recipe</button></Link></li>
             </ul>
