@@ -9,11 +9,11 @@ export const GET_DISH_TYPES = 'GET_DISH_TYPES'
 export const ORDER_BY_ABC = 'ORDER_BY_ABC'
 export const FILTER_BY_DIET ='FILTER_BY_DIET'
 export const FILTER_BY_TYPE  = 'FILTER_BY_TYPE'
-const {REACT_API_URL} = process.env
+const {REACT_APP_API_URL} = process.env;
 
 export function fetchRecipes() {
     return function(dispatch) {
-        axios.get(REACT_API_URL)
+        axios.get(`${REACT_APP_API_URL}/api/recipes/`)
         .then((recipes) => {
             dispatch({
                 type: FETCH_RECIPES,
@@ -29,7 +29,7 @@ export function fetchRecipes() {
 
 export function searchRecipes(search) {
     return function(dispatch) {
-        axios.get(`${REACT_API_URL}/api/recipes?name=${search}`)
+        axios.get(`${REACT_APP_API_URL}/api/recipes?name=${search}`)
         .then((recipes) => {
             dispatch({
                 type: SEARCH_RECIPES,
@@ -75,7 +75,7 @@ export function filterByType(type){
 export function getDiets (){
     
     return async function(dispatch){
-        var json = await axios.get(`${REACT_API_URL}/api/diets`);
+        var json = await axios.get(`${REACT_APP_API_URL}/api/diets`);
         return dispatch( {
             type : GET_TYPE_DIETS,
             payload: json.data
@@ -87,7 +87,7 @@ export function getDiets (){
 export function getDishTypes (){
     
     return async function(dispatch){
-        var json = await axios.get(`${REACT_API_URL}/api/dishTypes`);
+        var json = await axios.get(`${REACT_APP_API_URL}/api/dishTypes`);
         return dispatch( {
             type : GET_DISH_TYPES,
             payload: json.data
@@ -101,7 +101,7 @@ export function getDishTypes (){
 export function postRecipes (payload) {
     return async function(){
         try {
-            var json = await axios.post(`${REACT_API_URL}/api/recipes`, payload);
+            var json = await axios.post(`${REACT_APP_API_URL}/api/recipes`, payload);
             return console.log(json, alert("Recipe created succesfully ✅"))
             
         } catch (error) {
