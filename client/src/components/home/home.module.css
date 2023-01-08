@@ -1,91 +1,50 @@
-.bkg{
-    background-image: url('../../icons/56631.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment:fixed;
-    min-height: 100vh;
-    height:100%;
-    min-width: 90vw;
-    width: 100%;
+html {
+  scroll-behavior: smooth;
 }
 
-.filter{
-    display: flex;
-    justify-content: center;
-    gap: 10px;    
-    padding-top: 70px;
+.content {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 80px;
+  grid-template-columns: repeat(12, 1fr);
 }
 
-.RefBTN{
-    background-image: url('../../icons/159657.png');
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 5px;
-    background-size: cover;
-    background-position: center;
-    border: 0ch;
-    width: 25px;
-    height: 25px;
+.main {
+  grid-row: 1 / 6;
+  grid-column: 1 / span 12;
+  background: lightcoral;
 }
-.RefBTN:hover{
-    cursor: pointer;
-    transform: scale(1.06);
-    transition: all 0.5s;
+
+.nav {
+  background: lightseagreen;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: .7em;
 }
+
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 1.2em;
+  list-style: none;
+
+}
+
+
 
 .recipes {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    margin: 20px;
-}
-
-
-
-.nav{
   display: flex;
-  position: fixed;
-  width: 100%;
-  flex-direction: row;
-  list-style: none;
-  margin-top: 0;
-  padding: 13px;
-  padding-left: 0;
-  padding-right: 0; 
-  justify-content: space-evenly;
-  background-color:rgba(126, 83, 44, 0.7);
-  z-index: 2;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
+  margin: 20px;
 }
 
-.title{
-  font-size: 30px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color:rgb(65, 27, 27) ;   
-}
-
-.link, .visited, .active {
-  text-decoration:none;
-}
-
-
-
-.createBTN{
-  color: rgb(0, 0, 0);
-  background-color:rgba(126, 83, 44, 0.7);
-  border-radius: 5px;
-  height: 30px;
-
- 
-}
-.createBTN:hover{
-  border-color: #888;
-  box-shadow: 0px 0px 20px 5px rgba(167, 151, 137, 0.8);
-  cursor: pointer;
-}
-
-.loading{
+.loading {
   background-image: url('../../icons/loading-unscreen.gif');
   background-position: center;
   background-repeat: no-repeat;
@@ -96,4 +55,27 @@
 
 
 
+.footer {
+  grid-row: 6 / span 1;
+  grid-column: 1 / span 12;
+  background: violet;
+}
 
+
+
+
+@media only screen and (max-width: 700px) {
+  .nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav ul li {
+    margin: 3px;
+  }
+
+  .navInf{
+    display: none;
+  }
+}
