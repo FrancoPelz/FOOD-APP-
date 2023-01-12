@@ -17,7 +17,7 @@ import Landing from "../landingPage/landingPage";
 export default function Home() {
   const recipes = useSelector((state) => state.filteredRecipes)
   const [page, setPage] = useState(1)
-  const [perPage, setPerPage] = useState(9)
+  const [perPage, setPerPage] = useState(8)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -25,55 +25,61 @@ export default function Home() {
   }, [dispatch])
   const max = Math.ceil(recipes.length / perPage)
 
+
   function handleOnClick() {
     dispatch(fetchRecipes())
   }
 
+
   return (
     <React.Fragment>
       <Landing />
-      <a name="menu" id="menu"></a>
-      <div className={styles.content}>
-        <article class={styles.main}>
-          <div className={styles.nav}>
-            <ul>
-              <li className={styles.title}><h2>FOOD APP</h2></li>
-              <li><SearchBar setPage={setPage} /></li>
-              <li ><Link to={'/create'}><button className={styles.createBTN}>Create Recipe</button></Link></li>
-            </ul>
-            <div className={styles.navInf}>
-              <OrderHs />
-              <OrderABC />
-              <FilterDiet setPage={setPage} />
-              <FilterType setPage={setPage} />
-              <button onClick={() => handleOnClick()} className={styles.RefBTN}></button>
+      <section id="menu">
+        <div className={styles.content}>
+          <article class={styles.main}>
+            <div className={styles.nav}>
+              <ul>
+                <li className={styles.title}><h2>FOOD APP</h2></li>
+                <li><SearchBar setPage={setPage} /></li>
+                <li ><Link to={'/create'}><button className={styles.createBTN}>Create Recipe</button></Link></li>
+              </ul>
+              <div className={styles.navInf}>
+                <ul>
+                  <li><OrderHs/></li>
+                  <li><OrderABC/></li>
+                  <li><FilterDiet setPage={setPage} /></li>
+                  <li><FilterType setPage={setPage} /></li>
+                  <li><button onClick={() => handleOnClick()} className={styles.RefBTN}></button></li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div className={styles.recipes}>
-            {
-              recipes.length ?
-                recipes
-                  .slice((page - 1) * perPage, (page - 1) * perPage + perPage)
-                  .map((r, i) =>
-                    <div key={i}>
-                      <Recipe
-                        key={r.id}
-                        id={r.id}
-                        name={r.name}
-                        image={r.image}
-                        diets={r.diets}
-                        dishTypes={r.dishTypes}
-                      />
-                      <br />
-                    </div>) :
-                <Loading />
-            }
-          </div>
-        </article>
-        <footer class={styles.footer}>
-          <Pagination page={page} setPage={setPage} max={max} />
-        </footer>
-      </div>
+            <div className={styles.recipes}>
+              {
+                recipes.length ?
+                  recipes
+                    .slice((page - 1) * perPage, (page - 1) * perPage + perPage)
+                    .map((r, i) =>
+                      <div key={i}>
+                        <Recipe
+                          key={r.id}
+                          id={r.id}
+                          name={r.name}
+                          image={r.image}
+                          diets={r.diets}
+                          dishTypes={r.dishTypes}
+                        />
+                        <br />
+                      </div>) :
+                  <Loading />
+              }
+            </div>
+          </article>
+          <footer class={styles.footer}>
+            <Pagination page={page} setPage={setPage} max={max} />
+          </footer>
+        </div>
+      </section>
+
     </React.Fragment>
   )
 }

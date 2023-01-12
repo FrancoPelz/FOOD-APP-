@@ -2,18 +2,20 @@ html {
   scroll-behavior: smooth;
 }
 
-.link, .visited, .active {
-  text-decoration:none;
+.link,
+.visited,
+.active {
+  text-decoration: none;
 }
 
-
+/*----------------------------------------------------------------------*/
 
 .content {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 80px;
   grid-template-columns: repeat(12, 1fr);
-  background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(243, 230, 216));
-  
+  background: radial-gradient( rgb(255, 255, 255), rgb(134, 89, 45));
+
 }
 
 
@@ -23,13 +25,14 @@ html {
   min-height: 88vh;
 }
 
+/*----------------------------------------------------------------------*/
+
 .nav {
   position: sticky;
   top: 0;
   z-index: 100;
   display: flex;
   flex-direction: column;
-  padding: .7em;
   background: rgb(115, 77, 38);
   border-bottom: 3px solid rgb(77, 51, 25);
   border-top: 3px solid rgb(77, 51, 25);
@@ -39,13 +42,48 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 1.2em;
+  padding: 0.8em;
   list-style: none;
 }
 
-.nav ul:first-child{
+.nav ul:first-child {
   color: #fff;
 }
+
+.navInf ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.navInf ul li {
+  margin: 0px 3px ;
+}
+
+.RefBTN{
+  background-image: url('../../icons/159657.png');
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  background-size: cover;
+  background-position: center;
+  border: 0ch;
+  width: 20px;
+  height: 20px;
+}
+
+.RefBTN:hover{
+  cursor: pointer;
+  transform: scale(1.06);
+  transition: all 0.5s;
+}
+
+.navInf ul :nth-child(5) {
+  padding-left: 5px;
+}
+
+/*----------------------------------------------------------------------*/
 
 .recipes {
   display: flex;
@@ -66,7 +104,7 @@ html {
 }
 
 
-
+/*----------------------------------------------------------------------*/
 
 .footer {
   grid-row: 6 / span 1;
@@ -76,7 +114,7 @@ html {
 
 
 
-
+/*------------------------------RESPONSIVE-------------------------------*/
 
 
 @media only screen and (max-width: 700px) {
@@ -90,7 +128,7 @@ html {
     margin: 3px;
   }
 
-  .navInf{
+  .navInf {
     display: none;
   }
 }
