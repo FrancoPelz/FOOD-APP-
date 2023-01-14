@@ -10,9 +10,9 @@ import AddRecipe from './components/createRecipe/createRecipe';
 function App() {
   return (
     <div className="App">
-        <Route exact path={'/'} component={Home}/>
-        <Route path={'/create'} component={AddRecipe}/>
-        <Route path={'/recipes/:id'} component={RecipeDetail}/>
+      <Route exact path={'/'} component={Home} />
+      <Route path={'/create'} component={AddRecipe} />
+      <Route path={'/recipes/:id'} component={RecipeDetail} />
     </div>
   );
 }
