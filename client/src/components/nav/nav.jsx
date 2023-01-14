@@ -9,8 +9,8 @@ export default function NavBar() {
             <div className={styles.container}>
                 <nav>
                     <a><h2 className={styles.title}>FOOD APP</h2></a>
-                    <a href="/">Home</a>
-                    <a href="/create">Create</a>
+                    <a href="/"><h4>Home</h4></a>
+                    <a href="/create"><h4>Create</h4></a>
                 </nav>
             </div>
 

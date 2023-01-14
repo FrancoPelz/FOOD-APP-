@@ -15,11 +15,13 @@ import Landing from "../landingPage/landingPage";
 import NavBar from "../nav/nav";
 
 
+
 export default function Home() {
   const recipes = useSelector((state) => state.filteredRecipes)
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(9)
   const dispatch = useDispatch()
+
 
   useEffect(() => {
     dispatch(fetchRecipes())
@@ -30,6 +32,8 @@ export default function Home() {
   function handleOnClick() {
     dispatch(fetchRecipes())
   }
+
+
 
 
   return (
@@ -46,7 +50,7 @@ export default function Home() {
               <li><OrderABC /></li>
               <li><FilterDiet setPage={setPage} /></li>
               <li><FilterType setPage={setPage} /></li>
-              <li><button onClick={() => handleOnClick()} className={styles.RefBTN}></button></li>
+              <li><button onClick={() => handleOnClick()} className={styles.RefBTN}>refresh</button></li>
             </ul>
           </div>
 

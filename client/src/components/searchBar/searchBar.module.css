@@ -11,8 +11,9 @@
 .btn:hover{
     cursor: pointer;
     color: #000;
-    background-color: rgb(230, 138, 0);
+    background-color: rgb(255, 170, 0);
 }
+
 
 .search {
     display: flex;
@@ -21,9 +22,9 @@
     align-items: center;
     border-radius: 5px;
     border: 2px solid rgb(26, 13, 0);
-    right: 2.5em;
-    top: 1em;
     z-index: 150;
+    top: 1.6em;
+    right: 3em;
 }
 
 .input {
