@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom'
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store= {store}>
+      <Provider store={store}>
         <App />
       </Provider>
     </BrowserRouter>
