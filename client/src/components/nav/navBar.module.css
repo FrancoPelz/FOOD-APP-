@@ -1,0 +1,30 @@
+
+
+.container {
+    background: rgb(77, 51, 25);
+    border-bottom: 3px solid rgb(26, 13, 0);
+    border-top: 3px solid rgb(26, 13, 0);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    padding: 7px;
+    height: 3em;
+}
+
+nav a {
+    padding-left: 20px;
+    color: #fff;
+}
+
+
+@media only screen and (max-width: 700px) {
+    nav  {
+        height: 7em;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+  }

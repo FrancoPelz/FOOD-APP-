@@ -48,7 +48,7 @@
 .pageN{
     border: 0ch;
     height: 36px;
-    width: 55px;
+    width: 65px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,6 +57,4 @@
     padding-right: 10px ;
     border-bottom: solid 2px;
     box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5)
-
-
 }
