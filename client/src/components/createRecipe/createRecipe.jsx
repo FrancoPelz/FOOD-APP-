@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getDiets, getDishTypes, postRecipes } from "../../redux/actions";
 import styles from '../createRecipe/createRecipe.module.css'
 import NavBar from "../nav/nav";
@@ -113,7 +112,7 @@ export default function AddRecipe() {
             steps: '',
             healthScore: '',
             steps: '',
-            img: '',
+            image: '',
             diets: [],
             dishTypes: []
         });
@@ -127,79 +126,124 @@ export default function AddRecipe() {
             <div>
                 <NavBar />
             </div>
-            <div className={styles.bkg}>
-                <div className={styles.bkg2}>
-                    <form onSubmit={(e) => { handleSubmit(e) }}>
-                        <div>
+            <div className={styles.backgorund}>
+                <div className={styles.container}>
+
+                    <form className={styles.form}
+                        onSubmit={(e) => { handleSubmit(e) }}>
+
+                        <div className={styles.titles}>
                             <h2>Create your Recipe! </h2>
+                            <p>Complete the following form to add your recipe</p>
                         </div>
-                        <p>Complete the following form to add your recipe</p>
-                        <div>
-                            <label>Title: </label>
-                            <input onChange={(e) => handleChange(e)} name='name' type="text" value={input.name} />
+
+
+                        <div className={styles.title}>
+                            <div>
+                                <label for="read">Title: </label>
+                                <input className={styles.form_input} onChange={(e) => handleChange(e)}
+                                    name='name' type="text" value={input.name} />
+                            </div>
                             {error.name && (
                                 <div className={styles.danger}>{error.name}</div>
                             )}
                         </div>
-                        <p>Summary:<textarea onChange={(e) => handleChange(e)} name="summary" rows="5" cols="50" placeholder="Wtite a short summary:" value={input.summary} /></p>
-                        {error.summary && (
-                            <div className={styles.danger}>{error.summary}</div>
-                        )}
+
+                        <div className={styles.img}>
+                            <div>
+                                <label>Image url:</label>
+                                <input onChange={(e) => handleChange(e)} type="url"
+                                    name="image" placeholder="https://example.com"
+                                    value={input.image}
+                                    className={styles.form_input} />
+                            </div>
+                            {error.image && (
+                                <div className={styles.danger}>{error.image}</div>
+                            )}
+                        </div>
+
+                        <div className={styles.hs}>
+                            <p>Health Score:</p>
+                            <input onChange={(e) => handleChange(e)}
+                                className={styles.form_input}
+                                type="range" min="0" max="100" step="10" name="healthScore" />
+                        </div>
+
                         <p>Pleace, select one or more of each type:</p>
-
-                        <div className={styles.check}>
-
-                            <div className={styles.diets1}>
+                        <div className={styles.checks}>
+                            <div className={styles.diets}>
                                 <p>Diets</p>
-                                {listDiets.map((d, index) => {
-                                    return (
-                                        <div className={styles.diets}>
-                                            <input
-                                                onChange={() => handleSelectDiet(index)}
-                                                checked={checkedStateD[index]}
-                                                type={"checkbox"} name={d} id={index} value={d} />
-                                            <label htmlFor={index}>{d}</label>
-                                        </div>
-                                    )
-                                })}
-
+                                <div className={styles.diets_check}>
+                                    {listDiets.map((d, index) => {
+                                        return (
+                                            <div >
+                                                <input
+                                                    onChange={() => handleSelectDiet(index)}
+                                                    checked={checkedStateD[index]}
+                                                    type={"checkbox"} name={d} id={index} value={d} />
+                                                <label htmlFor={index}>{d}</label>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
                             </div>
 
-                            <div className={styles.types1}>
+                            <div className={styles.types}>
                                 <p>DishTypes</p>
-                                {listDishTypes.map((t, index) => {
-                                    return (
-                                        <div className={styles.types}>
-                                            <input
-                                                onChange={() => handleSelectType(index)}
-                                                checked={checkedStateT[index]}
-                                                type={"checkbox"} name={t} id={index + 100} value={t} />
-                                            <label htmlFor={index + 100}>{t}</label>
-                                        </div>
-                                    )
-                                })}
+                                <div className={styles.types_check}>
+                                    {listDishTypes.map((t, index) => {
+                                        return (
+                                            <div>
+                                                <input
+                                                    onChange={() => handleSelectType(index)}
+                                                    checked={checkedStateT[index]}
+                                                    type={"checkbox"} name={t} id={index + 100} value={t} />
+                                                <label htmlFor={index + 100}>{t}</label>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
                             </div>
                         </div>
-                        {error.dietsTypes && (
-                            <div className={styles.danger}>{error.dietsTypes}</div>
-                        )}
-
-                        <p>Health Score:<input onChange={(e) => handleChange(e)} type="range" min="0" max="100" step="10" name="healthScore" /></p>
-                        <p>Instructions:<textarea onChange={(e) => handleChange(e)} name="steps" rows="5" cols="50" placeholder="Step by step" value={input.steps} /></p>
-                        <div>
-                            <label>Image url:</label>
-                            <input onChange={(e) => handleChange(e)} type="text" name="image" placeholder="https://example.com" />
+                        <div className={styles.checksError}>
+                            {error.dietsTypes && (
+                                <div className={styles.danger}>{error.dietsTypes}</div>
+                            )}
                         </div>
-                        {error.image && (
-                            <div className={styles.danger}>{error.image}</div>
-                        )}
-                        <br />
-                        {error.hasOwnProperty('name') || error.hasOwnProperty('summary') || error.hasOwnProperty('dietsTypes') || error.hasOwnProperty('image') ? <div className={styles.danger}> Please fill required inputs to create your recipe</div> :
-                            <input className={styles.createBTN} type="submit" value="Create!" />}
+
+
+                        <div className={styles.summary}>
+                            <div>
+                                <p>Summary:</p>
+                                <textarea onChange={(e) => handleChange(e)}
+                                    name="summary" rows="5" cols="50" placeholder="Write a short summary:"
+                                    value={input.summary}
+                                    className={styles.form_input} />
+                            </div>
+                            {error.summary && (
+                                <div className={styles.danger}>{error.summary}</div>
+                            )}
+                        </div>
+
+                        <div className={styles.steps}>
+                            <p>Instructions:</p>
+                            <textarea onChange={(e) => handleChange(e)}
+                                name="steps" rows="5" cols="50" placeholder="Step by step"
+                                value={input.steps}
+                                className={styles.form_input} />
+                        </div>
                     </form>
+
+                    <div className={styles.btn}>
+                        {error.hasOwnProperty('name') || error.hasOwnProperty('summary') || error.hasOwnProperty('dietsTypes') || error.hasOwnProperty('image') ?
+                            <div className={styles.danger}> Please fill required inputs to create your recipe</div> :
+                            <input className={styles.create} type="submit" value="Create" />}
+                    </div>
+
+
                 </div>
             </div>
-        </React.Fragment>
+        </React.Fragment >
     )
 
 }

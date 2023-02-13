@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchRecipes } from '../../redux/actions';
-import styles from '../searchBar/searchBar.module.css'
+import styles from '../modals/searchModal.module.css'
 
-export default function SearchBar({ setPage }) {
+export default function SearchModal({ setPage, closeModal}) {
     const [search, setSearch] = useState('')
 
     let dispatch = useDispatch()
@@ -27,7 +27,7 @@ export default function SearchBar({ setPage }) {
             <form onSubmit={(e) => { onSubmit(e) }}>
                 <div className={styles.search}>
                     <input className={styles.input} type='search' onChange={onInputChange} value={search} placeholder="What are you looking for?" />
-                    <button className={styles.btn} type='submit'>search</button>
+                    <button className={styles.btn} type='submit' onClick={closeModal}>search</button>
                 </div>
             </form>
         </div>

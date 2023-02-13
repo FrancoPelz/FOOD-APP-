@@ -1,0 +1,27 @@
+.container {
+    padding: 20px;
+  }
+  
+  .container ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+  }
+  
+  
+  .container ul li {
+    padding: 5px;
+  }
+  
+  .RefBTN {
+    border: none;
+    background-color: inherit;
+    color: rgb(255, 235, 205);
+    font-size: large;
+  }
+  
+  .RefBTN:hover {
+    cursor: pointer;
+    color: rgb(255, 170, 0);
+  }

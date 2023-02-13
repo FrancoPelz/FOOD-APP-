@@ -1,19 +1,29 @@
 select {
-    color: #fff;
-    background: rgb(51, 26, 0);
+    top: 10px;
+    color: rgb(255, 235, 205);
+    background: rgb(36,17,0);
     text-align: center;
     border: 1px solid transparent;
     width: 8em;
+    border-radius: 5px;
+    font-family: 'Unbounded', cursive;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+select option{
+    font-weight: 100;
+    font-size: 14px;
 }
 
 select:hover {
     cursor: pointer;
-    border-left:1px solid rgb(255, 170, 0);
-    border-right:1px solid rgb(255, 170, 0);
-    color: rgb(255, 170, 0);
+    border-left:1px solid rgba(255, 235, 205);
+    border-right:1px solid rgba(255, 235, 205);
+    color: rgba(255, 235, 205);
 }
 
 
-select:focus{
+select:active{
     border: none;
 }

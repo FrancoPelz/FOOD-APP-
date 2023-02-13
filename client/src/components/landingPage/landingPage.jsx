@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+
 import { fetchRecipes } from "../../redux/actions";
-import styles from '../landingPage/landingPage.module.css'
+import styles from './landingPage.module.css'
 
 export default function Landing() {
 

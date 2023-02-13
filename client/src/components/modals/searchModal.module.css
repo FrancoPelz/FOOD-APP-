@@ -2,16 +2,16 @@
     background-color: rgb(51, 26, 0);
     border-radius: 0px 3px 3px 0px;
     border: none;
-    border-left:2px solid rgb(26, 13, 0) ;
+    border-left: 2px solid rgb(26, 13, 0);
     height: 25px;
-    color:rgb(255, 235, 205);
-    padding: 0px 6px; 
+    color: rgb(255, 235, 205);
+    padding: 0px 6px;
     font-family: 'Unbounded', cursive;
     font-weight: 100;
     font-size: 14px;
 }
 
-.btn:hover{
+.btn:hover {
     cursor: pointer;
     color: #000;
     background-color: rgb(255, 170, 0);
@@ -22,13 +22,9 @@
 .search {
     display: flex;
     width: fit-content;
-    position: absolute;
-    align-items: center;
+    margin: 25px;
     border-radius: 5px;
     border: 2px solid rgb(26, 13, 0);
-    z-index: 50;
-    top: 1.4em;
-    right: 1.6em;
 }
 
 .input {
@@ -55,12 +51,4 @@
 .input:focus {
     outline: none;
 
-}
-
-
-@media only screen and (max-width: 780px) {
-
-    .search {
-        display: none;
-    }
 }

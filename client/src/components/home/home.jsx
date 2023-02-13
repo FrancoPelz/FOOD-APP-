@@ -3,7 +3,6 @@ import OrderHs from "../flter&order/orderByHs";
 import OrderABC from "../flter&order/orderbyABC";
 import FilterDiet from "../flter&order/filterDiet";
 import FilterType from "../flter&order/filterType";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../../redux/actions";
 import styles from '../home/home.module.css'
@@ -11,34 +10,32 @@ import SearchBar from "../searchBar/searchBar";
 import Pagination from "../pagination/pagination";
 import Recipe from "../recipe/recipe";
 import Loading from "../loading/loading";
-import Landing from "../landingPage/landingPage";
 import NavBar from "../nav/nav";
+import Modals from "../modals/modals";
 
 
 
 export default function Home() {
+  const dispatch = useDispatch()
   const recipes = useSelector((state) => state.filteredRecipes)
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(9)
-  const dispatch = useDispatch()
-
+  const max = Math.ceil(recipes.length / perPage)
 
   useEffect(() => {
     dispatch(fetchRecipes())
   }, [dispatch])
-  const max = Math.ceil(recipes.length / perPage)
 
 
   function handleOnClick() {
-    dispatch(fetchRecipes())
+    dispatch(fetchRecipes());
   }
-
-
 
 
   return (
     <React.Fragment>
       <div>
+        <Modals />
         <NavBar />
         <SearchBar setPage={setPage} />
       </div>

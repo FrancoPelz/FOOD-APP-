@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux"
-import { filterByType} from "../../redux/actions"
+import { filterByType } from "../../redux/actions"
 import styles from '../flter&order/filter&order.module.css'
 
-export default function FilterType({setPage}){
+export default function FilterType({ setPage,closeModal}) {
 
     const dispatch = useDispatch()
-    
+
     function handleFilter(e) {
         dispatch(filterByType(e.target.value));
         setPage(1);

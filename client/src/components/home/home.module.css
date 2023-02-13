@@ -2,6 +2,7 @@ html {
   scroll-behavior: smooth;
 }
 
+
 .link,
 .visited,
 .active {
@@ -10,12 +11,13 @@ html {
 
 /*----------------------------------------------------------------------*/
 
+
 .content {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 80px;
   grid-template-columns: repeat(12, 1fr);
-  background: radial-gradient( rgb(255, 255, 255), rgb(134, 89, 45));
-
+  background: radial-gradient(rgb(255, 235, 205), rgb(134, 89, 45));
+  min-width: 400px;
 }
 
 
@@ -27,9 +29,9 @@ html {
 
 /*----------------------------------------------------------------------*/
 
-.navInf{
-  margin: 5px 0px;
+.navInf {
   background: rgb(51, 26, 0);
+  margin-top: 10px;
 }
 
 .navInf ul {
@@ -43,14 +45,21 @@ html {
 
 
 .navInf ul li {
-  margin: 0px 3px ;
+  margin: 0px 3px;
+  
 }
 
-.RefBTN{
+.RefBTN {
+  border: none;
+  background-color: inherit;
+  margin-left: 20px;
+  color: rgb(255, 235, 205);
+  font-size: large;
 }
 
-.RefBTN:hover{
+.RefBTN:hover {
   cursor: pointer;
+  color: rgb(255, 170, 0);
 }
 
 
@@ -62,21 +71,13 @@ html {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
-  width: 80vw;
+  width: 88vw;
 
 }
 
-.loading {
-  background-image: url('../../icons/loading-unscreen.gif');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 300px;
-  height: 300px;
-}
 
 
 /*----------------------------------------------------------------------*/
@@ -84,7 +85,7 @@ html {
 .footer {
   grid-row: 6 / span 1;
   grid-column: 1 / span 12;
-  border-top: 3px solid rgb(26, 13, 0);
+  border-top: 1px solid rgb(26, 13, 0);
   align-self: center;
 }
 
@@ -93,7 +94,7 @@ html {
 /*------------------------------RESPONSIVE-------------------------------*/
 
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 730px) {
   .nav ul {
     display: flex;
     flex-direction: column;
@@ -103,6 +104,10 @@ html {
   .nav ul li {
     margin: 3px;
   }
+
+}
+
+@media only screen and (max-width: 600px) {
 
   .navInf {
     display: none;
