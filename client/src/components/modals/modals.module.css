@@ -62,6 +62,8 @@
 
     .modals {
         display: flex;
+        margin: auto;
+        padding-right: 8.3px;
     }
 
     .modalFilters {
