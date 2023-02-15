@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 export default function NavBar() {
 
-    function HomeButton() {
+    function HomeHandle() {
         let history = useHistory();
 
         function handleClick() {
@@ -29,7 +29,7 @@ export default function NavBar() {
                         </div>
                         <p>by Franco Pelaez</p>
                     </a>
-                    <a onClick={handleClick}><h4>Home</h4></a>
+                    <a onClick={() => HomeHandle() }><h4>Home</h4></a>
                     <a href="/create"><h4>Create</h4></a>
                 </nav>
             </div >
