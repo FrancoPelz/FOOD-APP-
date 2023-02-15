@@ -4,13 +4,14 @@ import { useParams } from "react-router-dom"
 import Loading from "../loading/loading"
 import NavBar from "../nav/nav"
 import styles from '../recipeDetail/recipeDetail.module.css'
+const { REACT_APP_API_URL } = process.env;
 
 export default function Recipe() {
 
   const [recipe, setRecipe] = useState("")
   let { id } = useParams()
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/recipes/${id}`)
+    axios.get(`${REACT_APP_API_URL}/api/recipes/${id}`)
       .then((response) => {
         setRecipe(response.data)
       })
