@@ -4,13 +4,10 @@ import styles from '../nav/navBar.module.css'
 import { useHistory } from "react-router-dom";
 
 export default function NavBar() {
+    let history = useHistory();
 
     function HomeHandle() {
-        let history = useHistory();
-
-        function handleClick() {
-            history.push("/");
-        }
+        history.push("/")
     }
 
     const [isOpenModalSearch, openModalSearch, closeModalSearch] = useModal(false);
@@ -29,7 +26,9 @@ export default function NavBar() {
                         </div>
                         <p>by Franco Pelaez</p>
                     </a>
-                    <a onClick={() => HomeHandle() }><h4>Home</h4></a>
+                    <a>
+                        <button className={styles.homeBTN} onClick={() => HomeHandle()}><h4>Home</h4></button>
+                    </a>
                     <a href="/create"><h4>Create</h4></a>
                 </nav>
             </div >
