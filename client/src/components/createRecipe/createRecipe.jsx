@@ -104,6 +104,7 @@ export default function AddRecipe() {
     }
 
     let handleSubmit = (e) => {
+        console.log ("si funciona")
         e.preventDefault();
         dispatch(postRecipes(input));
         setInput({
@@ -129,8 +130,7 @@ export default function AddRecipe() {
             <div className={styles.backgorund}>
                 <div className={styles.container}>
 
-                    <form className={styles.form}
-                        onSubmit={(e) => { handleSubmit(e) }}>
+                    <form className={styles.form}>
 
                         <div className={styles.titles}>
                             <h2>Create your Recipe! </h2>
@@ -234,7 +234,7 @@ export default function AddRecipe() {
                         </div>
                     </form>
 
-                    <div className={styles.btn}>
+                    <div className={styles.btn}  onClick={(e) => { handleSubmit(e) }}>
                         {error.hasOwnProperty('name') || error.hasOwnProperty('summary') || error.hasOwnProperty('dietsTypes') || error.hasOwnProperty('image') ?
                             <div className={styles.danger}> Please fill required inputs to create your recipe</div> :
                             <input className={styles.create} type="submit" value="Create" />}
